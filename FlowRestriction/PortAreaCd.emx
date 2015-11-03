@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Icons>
+    <Icon size="128" bpp="32" format="png">
+<![CDATA[89504e470d0a1a0a0000000d4948445200000080000000800806000000c33e61cb00000006624b474400ff00ff00ffa0bda793000000097048597300000ec400000ec401952b0e1b0000026c49444154789ceddd316ec230184061bbea2972080ed185898583b230b1f410398439863b5105704aa28289f3de37d1c84094bcfe0484da98730ee2fa78f70ee8bd0c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e03e6f37c418fdc3812b97738e97db77018410c26eb70b9bcda6de1ea98abeefc3f178bcda560c60bbdd86fd7e5f65a754cfe170b80bc06b0038038033003803803300380380330038038033003803803300380380330038038033003803803300b8e2378296a6ebba10420829a5dfdb1729a5d1f563eba63cde339ea7054d4d80d2011f6eebbaaeb866ca7de7ae9d73df256b62020c957e93ff5af3d7bad2e30da7c3d8fd873f4fd99f256b6a023c1aaf29a5d1133ae7f1a68ef1db75632f1f4bd6dc0478a4e6c16fe9448f696a023c52ba706beda2acb6d54d8010ea5d89af21ae554d8092578ee9b1770b2dbd34ac7202bcfa040c3f3f68fdb380554d80d2811f5e073c338cffbe83588a2626c09c833d65eddc93b796935db2aa09a0f90c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00ce00e00c00aef88590d3e914cee773ed7dd18bf57d7fb72de67cfdef01628cdfb57648ef9173febadcbe0b402c5e03c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c019009c01c01900dc0fb012974d57e548de0000000049454e44ae426082]]>
+   </Icon>
+</Icons>
+ <Model version="4.5" build="4.5.4.6171">
+    <Sidops>
+<![CDATA[PortArea 912 96.1 description '<Information>
+ <Description>
+    <Version>4.5</Version>
+  <LibraryPath>FlowRestriction\PortAreaCd.emx</LibraryPath>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <TimeStamp>2015-10-21 00:08:37</TimeStamp>
+<AllowLibraryUpdate>False</AllowLibraryUpdate>
+  <Description>The model computes the opening area and discharge coefficient of intake ports for uniflow scavenging 2-stroke engine cylinder</Description>
+  <Title>IntakePortArea</Title>
+  <Author>Kevin K. Yum</Author>
+  <Company>Norwegian University of Science and Technology</Company>
+  <Department>Dept. of Marine Technology</Department>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>'; type Submodel  ports   signal in phi {rad} ; "Crank angle"   signal out area {m2} ; "Opening area of intake ports"   signal out Cd; "Discharge coefficient"   signal out aEff {m2} ; "Effective opening area"   signal out xP {m} ; "Piston travel from TDC" end; icon bg  figures   rectangle 874.3 81 949.8 111.2 fill 15132390;   text 'name' 912.3 96.1 16; end; implementation eqparameters	real global S, lambdaR;  //stroke, ratio of crank rod to conneting rod// Port dimension	real global N_p;				//No of ports	real global Y;				//Height of the ports	real global X;				//Width of the ports// Parameters for purity calculationvariables	real a_CR, l_CR;  // Length of crank rod, connecting rod, position of piston relative to TDC	real r;				// Radius of the corner of the port		real y_open, theta;		// Opening height and angle for corner	real A_R;					// Opening ratioinitialequations	a_CR = S/2;	l_CR = a_CR / lambdaR;	r = X / 2;code// Calculating the position of the piston w.r.t. TDC	xP = a_CR + l_CR - (a_CR*cos(phi) + sqrt(l_CR^2 - (a_CR*sin(phi))^2));	if xP > (S - Y) then// Calculating the area and discharge coefficient of the port		y_open = xP - (S - Y);		if y_open < r then			theta = arcsin((r-y_open)/r);			area = (X-2*r)*y_open + 0.5*r^2*(pi/2-theta) - 0.5*(r-y_open)*r*cos(theta);		else if y_open > (Y - r) then				y_open = y_open - (Y - r);				theta = arcsin(min([y_open/r;1]));				area = X*(Y-r) - 0.43*r^2 + (X-2*r)*y_open + 0.5*r^2*theta + 0.5*r*cos(theta)*y_open;			else				area = X*y_open - 0.43*r^2;			end;		end;		A_R = area / (X*Y - 0.86*r^2);		area = area*N_p;		Cd = -5.408*A_R^5 + 15.9*A_R^4 + -19.03*A_R^3 + 11.39*A_R^2 + -3.284*A_R + 1.143;		// The fit model was taken from the Sher, E. (1990). Scavenging 		// the two-stroke engine. Progress in Energy and Combustion Science, 		// 16(2), 95-124. 		Cd = min([0.98, Cd]);	else		area = 0;		Cd = 0;	end;	aEff = area*Cd;implementation_end;]]>
+  </Sidops>
+</Model>
+</Document>

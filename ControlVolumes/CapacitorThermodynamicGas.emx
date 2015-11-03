@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Icons>
+    <Icon size="64" bpp="32" format="png">
+<![CDATA[89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000006624b474400ff00ff00ffa0bda793000000097048597300000ec400000ec401952b0e1b000002fd49444154789ced9b314c14511086bf21264805546075d106a9a0a3b5432be8b423569694947496d0d91a1ba4a432da2836840ab5112a2f5684869306a41a8bbd058453e6ededec2cc77dc94b4878fbf2cfbf6ff6cddbb7278062e7041855d5d3846b2a4544e6800d63f7dd3b89e3afd739f836efc96ed45087ff7d013681cfc0b6aa1ea41af0a63b6dfea8eaa9886c024f804fc03659c09b9d6e9e604f81a6aa3e284ba82722d250d59f96be0309e3d6feeee75883873403b60b68a93d292930a2aa479e6222b0ce80fd5e0c1eec067c75551148df0063bf6fae2a02b11ab0e7aa2210ab01bf5c5504625a0655552ad012424a21d493580cd877571188c580dfee2a02b118d0b30f40e81bd07f08f60d8816108dc58071771581580cb8ebae22905b6f407f2f102d201a93012232e62d240aeb0c1871551188d58087ae2a02e91b60ec37e5aa2210ab01d3ae2a02b11a30292283ae4a4a46445e8ac8ecb5fdb09f0d4eabea8d381f109109ce5fe5b7c8be18f9006c5cfe4620a510ba4969f0f8c2dfa3c073601d6889c89a882c88c870de418d6d4d55b9090df8688ce95d4a0a9c00f7ea7e4adc7e56b5e8fc8dd01552526008982f22aa62e631060fe99ba1a789fd237891d239250572c655f520f19a4a109129128ff28b6c879f15b8a62a92ee3e149b012d60b26eb3a0bd656f9290ff506c068c02ab05aef36695c4e073ac75c0e5361bbdde5f58f7678bc6512405729a64a910faed707bdddf05ee17b9be9b7782f781b735d824bda660f0394553e0ac9c040683a6fe4a09fabb1e20c40460b924eda50ca2641b90b10a021f045e95a8bbb481143804961c839f00764ad65cea6079db01664a0c7c986cca1f3a687531206f5bc022d0e8e28eaf00c75e1abba90352d9257b3575c4f96f0ff6b45d528bc80cd941ec385961f3882e97370b551a504bfa87a36453f3d63240f6f3b266b49030da4fdb06f003df15a18e6de9e29273db4c5856552eafbb0de07b0dc479b7c5b398ff516bafd540a4575bf82bdeff54618b38566001ed1898bb12e735a5e80cbd91125bc054a718ff003783d95ad3287f280000000049454e44ae426082]]>
+   </Icon>
+</Icons>
+ <Model version="4.5" build="4.5.4.6171">
+    <Sidops>
+<![CDATA[Thdyn_Cont_Vol_Cyl 712 560specifications active 'Varying'	specification 'Fixed' description '<Information> <Description>    <LibraryPath>C:\Users\yum\Documents\GitHub\EngineSystemLibrary_20Sim\ControlVolumes\CapacitorThermodynamicGasFixedVol.emx</LibraryPath>  <Version>4.5</Version><IsMainModel>1</IsMainModel>  <KeepParameterValues>False</KeepParameterValues>  <AllowLibraryUpdate>True</AllowLibraryUpdate>  <Configuration>   <struct>    <member>     <name>DocumentationMask</name>     <value>      <struct></struct>     </value>    </member>   </struct>  </Configuration>  <Description>Thermodynamic control volume with fixed volume and no chemical reaction inside</Description>    <TimeStamp>2015-10-19 17:21:38</TimeStamp></Description></Information>'; type C  ports   pseudohydraulic in pp;   power in pF;   pseudothermalh in pT;   signal out mCyl;  restrictions   causality preferred out pp; end; icon bg bottom  figures   text 'C' 712 560 51 bold;  terminals   pp 688 536 fixed;   pF 736 536 fixed;   pT 712 536 fixed;   mCyl 736 568 fixed; end; implementation eqparameters	real global fs;	string global dll_ICE;	      // dll filename for subroutines	string global dll_fcn_ThDP;   // subroutines names in the dll file	string global dll_fcn_th_MEV; // subroutines names in the dll file	real global m0; 	real global E0;	real global mb0;	real global V0;variables	real interesting m, E, m_b, V;	real interesting p, T, F;	real hidden inarr_ThermoProp[5], outarr_ThermoProp[16];	real inarr_th_MEV[9], outarr_th_MEV[3]; 	real p_prev, T_prev, R_prev, u_prev, Cv_prev;initialequations	p_prev = 10e5;	T_prev = 400;	R_prev = 287;	u_prev = 2.8508e+05;	Cv_prev = 7.31e+02;	V = V0;	equations	m 		= int(pp.f,m0);	E 		= int(pT.f,E0);	m_b	= int(pF.f,mb0);		inarr_th_MEV = [m;E;m_b;V;T_prev;R_prev;u_prev;Cv_prev;fs];	outarr_th_MEV = dll(dll_ICE,dll_fcn_th_MEV, inarr_th_MEV);		p = outarr_th_MEV[1];	T = outarr_th_MEV[2];	F = outarr_th_MEV[3];	T_prev = T;	p_prev = p;	inarr_ThermoProp = [p;T;F;fs;1];		outarr_ThermoProp = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);		R_prev = outarr_ThermoProp[1];	u_prev = outarr_ThermoProp[4];	Cv_prev = outarr_ThermoProp[15];	pp.e = p;	pT.e = T;	pF.e = F;	mCyl = m;implementation_end;specification_end;	specification 'Varying' description '<Information>
+ <Description>
+    <LibraryPath>ControlVolumes\CapacitorThermodynamicGas.emx</LibraryPath>
+  <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+  <AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+  <Description>Thermodynamic control volume with varying volume and no chemical reaction inside</Description>
+    <TimeStamp>2015-10-27 22:31:23</TimeStamp>
+</Description>
+</Information>'; type C  ports   pseudohydraulic in pp;   power in pF;   pseudothermalh in pT;   signal out mCyl;   power out ppV;   signal out vCyl;  restrictions   causality preferred out pp; end; icon bg bottom  figures   text 'C' 712 560 51 bold;  terminals   pp 688 536 fixed;   pF 736 536 fixed;   pT 712 536 fixed;   mCyl 736 568 fixed;   ppV 712 584 fixed;   vCyl 736 584 fixed; end; implementation eqparameters	real global fs;	string global dll_ICE;	      // dll filename for subroutines	string global dll_fcn_ThDP;   // subroutines names in the dll file	string global dll_fcn_th_MEV; // subroutines names in the dll file	real global m0; 	real global E0;	real global mb0;	real global V0;variables	real interesting m, E, m_b, V;	real interesting p, T, F;	real hidden inarr_ThermoProp[5], outarr_ThermoProp[16];	real inarr_th_MEV[9], outarr_th_MEV[3]; 	real p_prev, T_prev, R_prev, u_prev, Cv_prev;initialequations	p_prev = 10e5;	T_prev = 400;	R_prev = 287;	u_prev = 2.8508e+05;	Cv_prev = 7.31e+02;	equations	m 		= int(pp.f,m0);	E 		= int(pT.f,E0);	m_b	= int(pF.f,mb0);	V 		= int(ppV.f,V0);		inarr_th_MEV = [m;E;m_b;V;T_prev;R_prev;u_prev;Cv_prev;fs];	outarr_th_MEV = dll(dll_ICE,dll_fcn_th_MEV, inarr_th_MEV);		p = outarr_th_MEV[1];	T = outarr_th_MEV[2];	F = outarr_th_MEV[3];	T_prev = T;	p_prev = p;	inarr_ThermoProp = [p;T;F;fs;1];		outarr_ThermoProp = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);		R_prev = outarr_ThermoProp[1];	u_prev = outarr_ThermoProp[4];	Cv_prev = outarr_ThermoProp[15];	pp.e = p;	pT.e = T;	pF.e = F;	ppV.e = p;	mCyl = m;	vCyl = V;implementation_end;specification_end;end;]]>
+  </Sidops>
+</Model>
+</Document>

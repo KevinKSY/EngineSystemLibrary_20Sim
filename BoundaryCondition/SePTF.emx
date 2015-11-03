@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Icons>
+    <Icon size="64" bpp="32" format="png">
+<![CDATA[89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000006624b474400ff00ff00ffa0bda793000000097048597300000ec400000ec401952b0e1b0000035549444154789ced992f6c144114c67f8fe08e840475a421c11c04c9616aa00928c455d42230600e4782a825c1d42150b508cc91000285b99a2a14882ba609e18f25a4fa21764936b333bb33bbdd3e42e74b26e9edceccfbe6dbf7debc998aaa729a71c69a8035b200d604ac9105b026608d2c8035016b6401ac0958230b604dc01a59006b02d638f5029ced3b81884c8135e092f36a1ff8aeaa3ffbda1814aa9adc8029b00b68445b017360d4c5d6d02d75e123602772e1beb661bd60b749ca8d90882c819b9dddadc0a6aabeeb39c7b1215a001199032f02aff780f7c0aff2f775e041c37417ff99dc90e0fa3e975e02d30ee1b263edfa4921202233e0ade755eb9714911570c523bcb41a3e01c46e83ee160740a41b3f055eba0f4564a2aa5fda068bc808b80aac571e7f0656c71146bdeb80087c001e799eff6e1a242263e031f0a4a1cf6be099aa7eeccc2e3207ccf1c7f27c88b8043602f642ad734e8925346930be2090084f68f1bd444821b66821b002b6fb884178b7518aca735eda08f5b937a4004d5e10223c03c6093642dbe6d4e937a2d8826b7d0713a0343cebe89ebbc0ace3d7f77ed586fe8d767a0950f184b67008b5253009cc1b8afde0212ae03149b9a053ac96c6534e846eab89807fa75976f0c8c6316e4b3a0cf950162ab7814d9aeb7f17e754f5a832cf02d872fa1c00cf1be6b88ca74ed0942ab3ab07b484c89c4092aab4b933ae6b58f54a84c72e80b3a831e130593a7d4d04482a852b75f99a469ce9b5a8d51f8ac805eaee1d73afd01602219e638d3d274426bb0545a113959d23139c3a7d7c05ce62480f55d5a85be16b145fcf3dd2de8f52381e9f3ccfb64aaf1b0e91711cbd9d79c68fa87b8f2f0784ec040f5c14dbe0941e17aeb12edc94a082b57fb9a8d06e50abd808274c5f5f5f0db020f1e235f64668429190423800de0087e5eff3c05dc2896e4f556f79ec8c811fa131c0abf2ef3bd493ea5fdcd094fb818444d6f51c90143a3ded6c0f1202157253fcf11cdb96449c0e3b8a90bcf864014a72a392605ba5576dada7c140fe88f927cc2e3dee207a9d05aa8511f58bd3afc0b7a4786cb6b1eebcdaa7b8183daa8f4a98bf8f00ff034efdbfc7b300d604ac9105b026608d2c8035016b6401ac0958230b604dc01a59006b02d6c8025813b04616c09a8035b200d604acf107a24a15f7e336e8c10000000049454e44ae426082]]>
+   </Icon>
+</Icons>
+ <Model version="4.5" build="4.5.4.6171">
+    <Sidops>
+<![CDATA[Boundary 64 304specifications active 'Output'	specification 'Input' description '<Information> <Description>    <Version>4.5</Version><IsMainModel>1</IsMainModel>  <KeepParameterValues>False</KeepParameterValues>    <LibraryPath>BoundaryCondition\SePTF.emx</LibraryPath>  <TimeStamp>2015-10-25 18:05:04</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate>  <Configuration>   <struct>    <member>     <name>DocumentationMask</name>     <value>      <struct></struct>     </value>    </member>   </struct>  </Configuration> </Description></Information>'; type Se  ports   power in p [3,1];  restrictions   causality fixed out p; end; icon bg bottom  figures   text 'Se' 64 304 18 bold; end; implementation eqparameters	real p = 100000;	real T = 298.15;	real F = 0;variables	real flow[3];equations	p.e = [p;T;F];	flow = p.f;implementation_end;specification_end;	specification 'Output' description '<Information>
+ <Description>
+    <Version>4.5</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>BoundaryCondition\SePTF.emx</LibraryPath>
+  <TimeStamp>2015-10-26 20:04:46</TimeStamp>
+<AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>'; type Se  ports   power out p [3,1];  restrictions   causality fixed out p; end; icon bg bottom  figures   text 'Se' 64 304 18 bold; end; implementation eqparameters	real p = 100000;	real T = 298.15;	real F = 0;variables	real flow[3];equations	p.e = [p;T;F];	flow = p.f;implementation_end;specification_end;end;]]>
+  </Sidops>
+</Model>
+</Document>

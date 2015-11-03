@@ -1,0 +1,4794 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="4.4" build="4.4.1.4356">
+  <Sidops><![CDATA[model 128 184
+ description '<Information>
+ <Description>
+    <Version>4.4</Version>
+<IsMainModel>0</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>engine\engCyl2Stroke2ZoneBG.emx</LibraryPath>
+  <TimeStamp>2014-10-9 23:57:18</TimeStamp>
+</Description>
+</Information>';
+ type Mainmodel
+ end;
+ implementation bg
+  submodels
+   EngineControlSystem 552 216
+    description '<Information>
+ <Description>
+    <Version>4.4</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+  <AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct>
+       <member>
+        <name>MaskChoice</name>
+        <value>
+         <int>1</int>
+        </value>
+       </member>
+       <member>
+        <name>BitmapFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>ScriptFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>Scaling</name>
+        <value>
+         <double>1</double>
+        </value>
+       </member>
+      </struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+    <LibraryPath>Engine\ControlSystem\EngineControlSystem.emx</LibraryPath>
+  <TimeStamp>2014-9-19 22:29:12</TimeStamp>
+</Description>
+</Information>';
+    type Submodel
+     ports
+      signal out output [6,1];
+    end;
+    implementation bg
+     submodels
+      EngineControl 1048 296
+       description '<Description>
+ <Version>4.0</Version>
+ <LibraryPath>Template\Submodel-Equation.emx</LibraryPath>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <TimeStamp>2007-11-1 22:32:1</TimeStamp>
+ <AllowLibraryUpdate>False</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+       type 'Submodel-Equation'
+        ports
+         signal out output [6,1];
+       end;
+       implementation eq
+/* Equation Submodel
+Enter you equations here. You can use the Toolbar buttons at the left ( Add , f(x) etc. ).
+*/
+
+code
+
+	output = [1;1.2;1;-2;1;1];
+implementation_end;
+      plug output 1048 408;
+     end;
+     connections
+      EngineControl\output -> output;
+     end;
+    implementation_end;
+   Eng_Cyl1 326.5 322
+    description '<Information>
+ <Description>
+    <Version>4.4</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+  <AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct>
+       <member>
+        <name>MaskChoice</name>
+        <value>
+         <int>1</int>
+        </value>
+       </member>
+       <member>
+        <name>BitmapFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>ScriptFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>Scaling</name>
+        <value>
+         <double>1</double>
+        </value>
+       </member>
+      </struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+    <LibraryPath>Engine\EngCyl2Stroke2ZoneBG.emx</LibraryPath>
+  <TimeStamp>2014-10-9 17:37:06</TimeStamp>
+</Description>
+</Information>';
+    type Submodel
+     ports
+      rotation out M;
+      power in in [3,1];
+      power out out [3,1];
+      signal in input [6,1];
+      signal out output1 [2,1];
+      signal boolean out exh_open;
+      signal out p_cyl;
+      signal out V_cyl;
+      signal out p_max;
+      signal out T_w_phys;
+    end;
+    icon bg bottom shadow 11776947
+     figures
+      text 'name' 339.5 371.5 16;
+      line 328 408 296 392 326.5 338 width 2;
+      ellipse 316 396 340 420 width 2;
+      ellipse 320 328 336 344 width 2;
+      ellipse 285 380 309 404 width 2;
+      line 304 344 304 312 352 312 352 344 width 2;
+      line 296 360 296 256 360 256 360 360 360 360 width 2;
+      line 368 224 352 264 width 2;
+      line 328 224 328 264 width 2;
+      line 312 264 344 264 width 2;
+      spline 351.5 264 327.5 288 337 295 351.5 264 351.5 264 fill 255;
+     terminals
+      M 328 408 fixed;
+      in 278.5 370 fixed;
+      out 334.5 218 fixed;
+      input 374.5 218 fixed;
+      output1 366.5 218 fixed;
+    end;
+    implementation bg
+     submodels
+      CrankMechanism 438 562
+       description '<Description>
+ <Version>4.4</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+       type q_gr360
+        ports
+         power in p1;
+         signal out q_rad;
+         signal out P;
+         power out p2;
+         signal out flow;
+         signal in p_scvg;
+       end;
+       icon bg bottom shadow 11776947
+        figures
+         ellipse 435 596 459 620 width 3;
+         line 448 608 418 582 448 528 width 3;
+         ellipse 406 570 430 594 width 3;
+         ellipse 439 520 455 536 width 3;
+         line 422 536 422 504 470 504 470 536 width 3;
+        terminals
+         p1 448 496 fixed;
+         q_rad 488 536 fixed;
+         P 488 512 fixed;
+         p2 448 624 fixed;
+         flow 448 608 fixed;
+       end;
+       implementation bg
+        submodels
+         FlowSensor2 296 600
+          knot FlowSensor
+           ports
+            power knot in p1 [1];
+            power knot out p2 [1];
+            signal knot out flow [1];
+           restrictions
+            causality constraint not_equal p1 p2;
+          end;
+          icon bg ellipse
+           figures
+            ellipse 289.5 593.5 302.5 606.5 fill 16777215;
+            text 'f' 296.5 598.5;
+          end;
+          implementation eq
+equations
+	p2.f = p1.f;
+	p1.e = p2.e;
+	flow = p1.f;
+      implementation_end;
+         MSe 216 424
+          description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\MSe.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:12:33</TimeStamp>
+</Description>
+</Information>';
+          type MSe
+           ports
+            power in p;
+            signal in p_scvg;
+           restrictions
+            causality fixed out p;
+          end;
+          icon bg bottom
+           figures
+            text 'MSe' 216 424 18 bold;
+          end;
+          implementation eq
+variables
+	real flow;
+equations
+	p.e = p_scvg;
+	flow = p.f;
+implementation_end;
+         MTF2 296 512
+          type MTF
+           ports
+            power in p1;
+            power out p2;
+            signal in pfi;
+           restrictions
+            causality constraint not_equal p1 p2;
+          end;
+          icon bg
+           figures
+            text 'MTF' 296 512 18 bold;
+          end;
+          implementation eq
+parameters
+	real global slag, alam;
+variables
+	real m;
+	real csin, ccos;
+equations	
+	csin=sin(pfi);ccos=cos(pfi);
+	m = slag/2.0*(csin + alam*csin*ccos/sqrt(1.0-(alam*csin)^2));				
+	p1.e = 1/(m + 1e-20) * p2.e;
+	p2.f  = 1/(m + 1e-20) * p1.f;     implementation_end;
+         plug q_rad 416 552;
+         plug P 408 376;
+         plug p2 296 648;
+         plug flow 416 600;
+         plug p_scvg 88 424;
+         plug p1 296 312;
+         OneJunction3 296 424
+          knot OneJunction
+           ports
+            power knot duplicatable none p [1];
+            signal knot out flow [1];
+           restrictions
+            causality constraint one_out p;
+          end;
+          icon bg
+           figures
+            text '1' 296 424 18 bold;
+          end;
+          implementation eq
+equations
+	sum (direct (p.e)) = 0;
+	equal (collect (p.f));
+	flow = first (p.f);
+    implementation_end;
+         PowerSensor2 296 376
+          description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\PowerSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:29:42</TimeStamp>
+</Description>
+</Information>';
+          knot PowerSensor
+           ports
+            power knot in p1 [1];
+            power knot out p2 [1];
+            signal knot out P [1] {W} ;
+           restrictions
+            causality constraint not_equal p1 p2;
+          end;
+          icon bg ellipse
+           figures
+            ellipse 289.1 368.8 302.9 383.2 fill 16777215;
+            text 'P' 296.5 375.8;
+          end;
+          implementation eq
+equations
+	p2.e = p1.e;
+	p1.f = p2.f;
+	P = p1.e .* p1.f;
+implementation_end;
+         QSensor4 296 552
+          knot q_
+           ports
+            power knot in p1 [1];
+            power knot out p2 [1];
+            signal knot out q_rad [1];
+           restrictions
+            causality constraint not_equal p1 p2;
+          end;
+          icon bg ellipse
+           figures
+            ellipse 289.5 546 302.5 559 fill 16777215;
+            text 'q' 295.5 550;
+          end;
+          implementation eq
+parameters
+	integer global ncyl;
+	integer icyl= 1;
+	real global nstroke;
+	real global pfi0[ncyl];
+variables
+	real q0;
+	real b;
+	real q_gr;
+initialequations
+	q0=pfi0[icyl]*pi/180.0;
+	b 		= nstroke*180.0;	
+equations
+	p2.f 	= p1.f;
+	p1.e 	= p2.e;
+	q_rad 	= int (p1.f, q0);
+	q_gr	= q_rad*180.0/pi;
+
+     implementation_end;
+         Splitter1 360 552
+          description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+          knot Splitter
+           ports
+            signal knot duplicatable out output [1];
+            signal knot in input [1];
+          end;
+          icon bg ellipse
+           figures
+            ellipse 356.8 548.8 363.2 555.2 color -1 fill 0;
+            ellipse 355.7 547.7 364.3 556.3 color -1;
+           terminals
+            input 360 552 fixed;
+          end;
+          implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+         TF2 296 472
+          type TF
+           ports
+            power in p1;
+            power out p2;
+           restrictions
+            causality constraint not_equal p1 p2;
+          end;
+          icon bg
+           figures
+            text 'TF' 296 472 18 bold;
+          end;
+          implementation eq
+parameters
+	real global Diam;
+variables
+	real r;
+initialequations
+	r=1/(pi*Diam^2/4.0);
+equations					
+	p1.e = r * p2.e;
+	p2.f = r * p1.f;       implementation_end;
+        end;
+        connections
+         OneJunction3\p => TF2\p1;
+         TF2\p2 => MTF2\p1;
+         OneJunction3\p => MSe\p;
+         MTF2\p2 => QSensor4\p1;
+         PowerSensor2\p2 => OneJunction3\p;
+         QSensor4\p2 => FlowSensor2\p1;
+         p1 => PowerSensor2\p1;
+         FlowSensor2\p2 => p2;
+         Splitter1\output -> q_rad;
+         QSensor4\q_rad -> Splitter1\input;
+         PowerSensor2\P -> P;
+         FlowSensor2\flow -> flow;
+         Splitter1\output -> MTF2\pfi 360 512;
+         p_scvg -> MSe\p_scvg;
+        end;
+       implementation_end;
+      Demux 489.5 72.5
+						specifications active 'outputs_6'
+							specification 'default'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 129.5 64 129.5 96 width 2;
+   rectangle 125.5 64 133.5 96 color -1;
+   text '2' 134.5 91 color 8421504 8;
+  terminals
+   output1 129.5 72 fixed;
+   input 129.5 80 fixed;
+   output2 129.5 88 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+							specification 'outputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output;
+   signal in input;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = input;implementation_end;
+specification_end;
+							specification 'outputs_2'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '2' 133 83 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   input 128 72 fixed;
+   output2 128 80 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+							specification 'outputs_3'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal in input [3,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '3' 133 82 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   output2 128 72 fixed;
+   output3 128 80 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3] = input;implementation_end;
+specification_end;
+							specification 'outputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal in input [4,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 80 fixed;
+   output4 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4] = input;implementation_end;
+specification_end;
+							specification 'outputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal in input [5,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 72 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5] = input;implementation_end;
+specification_end;
+							specification 'outputs_6'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal in input [6,1];
+ end;
+ icon bg bottom
+  figures
+   line 521.5 70.5 457.5 70.5 width 2;
+   rectangle 457.5 66.5 521.5 74.5 color -1;
+   text '6' 478.5 75.5 color 8421504 8;
+  terminals
+   output1 513.5 70.5 fixed;
+   output2 505.5 70.5 fixed;
+   output3 497.5 70.5 fixed;
+   output4 481.5 70.5 fixed;
+   output5 473.5 70.5 fixed;
+   output6 465.5 70.5 fixed;
+   input 489.5 70.5 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6] = input;implementation_end;
+specification_end;
+							specification 'outputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal in input [7,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 72 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7] = input;implementation_end;
+specification_end;
+							specification 'outputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal in input [8,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   output8 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8] = input;implementation_end;
+specification_end;
+							specification 'outputs_9'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal out output9;
+   signal in input [9,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   text '9' 132 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 72 fixed;
+   output6 128 80 fixed;
+   output7 128 88 fixed;
+   output8 128 96 fixed;
+   output9 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8; output9] = input;implementation_end;
+specification_end;
+						end;
+      Demux1 361.5 72.5
+						specifications active 'outputs_2'
+							specification 'default'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 129.5 64 129.5 96 width 2;
+   rectangle 125.5 64 133.5 96 color -1;
+   text '2' 134.5 91 color 8421504 8;
+  terminals
+   output1 129.5 72 fixed;
+   input 129.5 80 fixed;
+   output2 129.5 88 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+							specification 'outputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output;
+   signal in input;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = input;implementation_end;
+specification_end;
+							specification 'outputs_2'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 377.5 70.5 345.5 70.5 width 2;
+   rectangle 345.5 66.5 377.5 74.5 color -1;
+   text '2' 350.5 75.5 color 8421504 8;
+  terminals
+   output1 369.5 70.5 fixed;
+   input 361.5 70.5 fixed;
+   output2 353.5 70.5 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+							specification 'outputs_3'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal in input [3,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '3' 133 82 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   output2 128 72 fixed;
+   output3 128 80 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3] = input;implementation_end;
+specification_end;
+							specification 'outputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal in input [4,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 80 fixed;
+   output4 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4] = input;implementation_end;
+specification_end;
+							specification 'outputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal in input [5,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 72 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5] = input;implementation_end;
+specification_end;
+							specification 'outputs_6'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal in input [6,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '6' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   output6 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6] = input;implementation_end;
+specification_end;
+							specification 'outputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal in input [7,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 72 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7] = input;implementation_end;
+specification_end;
+							specification 'outputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal in input [8,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   output8 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8] = input;implementation_end;
+specification_end;
+							specification 'outputs_9'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal out output9;
+   signal in input [9,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   text '9' 132 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 72 fixed;
+   output6 128 80 fixed;
+   output7 128 88 fixed;
+   output8 128 96 fixed;
+   output9 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8; output9] = input;implementation_end;
+specification_end;
+						end;
+      EffortSensor1 256 320
+       description '<Description><Version>4.0</Version><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Bond Graph\EffortSensor.emx</LibraryPath>
+  <TimeStamp>2007-9-27 9:59:27</TimeStamp>
+</Description>';
+       knot EffortSensor
+        ports
+         power knot in p1 [1];
+         pseudohydraulic knot out p2 [1];
+         signal knot out effort [1];
+        restrictions
+         causality constraint not_equal p1 p2;
+       end;
+       icon bg ellipse
+        figures
+         ellipse 249.1 313.3 262.9 327.4 fill 16777215;
+         text 'e' 256.5 317.6;
+       end;
+       implementation eq
+equations
+	p2.e = p1.e;
+	p1.f = p2.f;
+	effort = p1.e;
+     implementation_end;
+      ExhValve 568 328
+       description '<Description>
+ <LibraryPath>Bond Graph\R.emx</LibraryPath>
+ <Version>No Version Info</Version>
+ <IsMainModel>0</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+       type R
+        ports
+         power in pF_in;
+         power out pF_out;
+         power in pp_in;
+         pseudohydraulic out pp_out;
+         power in pT_in;
+         pseudothermalh out pT_out;
+         signal in lift; "Crank angle starting with 0 at TDC before intake stroke"
+         signal in purity;
+         signal in Comb_state;
+         signal in AR;
+         signal boolean in inport_open;
+         signal boolean out open;
+        restrictions
+         causality fixed in pp_in;
+         causality fixed in pF_in;
+         causality fixed in pT_in;
+         causality fixed in pp_out;
+         causality fixed in pF_out;
+         causality fixed in pT_out;
+       end;
+       icon bg bottom
+        figures
+         text 'R' 568 328 51 bold;
+        terminals
+         pF_in 536 360 fixed;
+         pF_out 600 360 fixed;
+         pp_in 536 312 fixed;
+         pp_out 600 312 fixed;
+         pT_in 536 336 fixed;
+         pT_out 600 336 fixed;
+         lift 568 296 fixed;
+         open 600 296 fixed;
+       end;
+       implementation eq
+parameters
+	real global nstroke;   //number of stroke of the engine
+	real global fs;			//Stoichiometric fuel-air ratio
+// Thermo package
+	string global dll_ICE;
+	string dll_fcn_thdyn 	= 'thdyn_CombGasZach';
+	// Valve dimension
+	real global Dv; // Valve head diameter
+	real global beta; // Seat angle
+	real global w; // Valve seat width
+	real global Dp; // Inner seat diameter
+	real global Ds; // Stem diameter  
+	// Parameters for curve fit for Cd correlation
+   real global p1;   	real global p2;
+   real global p3;		real global q1;
+	real global q2;		real global q3;
+	real global Cd_corr_coeff[3];
+// The fit model was taken from the Sher, E. (1990). Scavenging 
+// the two-stroke engine. Progress in Energy and Combustion Science, 
+// 16(2), 95-124. 
+variables
+	real hidden inarr_ThermoProp[3], outarr_ThermoProp[13];
+	real Area;
+	real hidden aa, pc, ksi, ksi1, ksim, ksin, ksil, p_AV, T_AV, d, a, c;
+	real F_AV;
+	real hidden h, rgas, kap;
+	real interesting dm, dm_b, dE;
+	real hidden sinb, cosb, tanb, sin2b;
+	real Cd, L_Dv, F0;
+	boolean reset;
+initialequations
+	sinb = sin(beta);	cosb = cos(beta); tanb = tan(beta);
+	sin2b = sin(2*beta);
+	reset = true;
+	F0 = 0.0001;
+code
+// Calculate the area of valve (from Heywood)	
+	if Comb_state == 5 and reset == true then
+		F0 = pF_in.e;
+		reset= false;
+	else 	if Comb_state == 0 and reset == false then
+				reset = true;
+			end;
+	end;
+
+	if lift > 0 then
+		open = true;
+		if lift < (w / (sinb*cosb)) then
+			Area = pi*lift*cosb*(Dv-2*w+lift/2*sin2b);
+		else if lift <= (((Dp^2 - Ds^2)/(4*(Dv-w)) - w^2)^0.5 + w*tanb) then
+      	     	Area = pi*(Dv-w)*((lift - w*tanb)^2 + w^2)^0.5;
+           else 
+         	  	Area = 0.25*pi*(Dp^2 - Ds^2);
+           end;
+		end;
+// Find the Cd at Pr_ref 2.35 (from E. Sher, see above)
+  		L_Dv = lift/Dv;
+		Cd = (p1*L_Dv^2 + p2*L_Dv + p3) /
+               (L_Dv^3 + q1*L_Dv^2 + q2*L_Dv + q3);
+	else
+		open = false;
+   	Cd = 0;
+   	Area = 0;
+//		if reset == true then reset = false; end;
+	end;
+	
+	if Area == 0 then
+		dm = 0;
+		dE = 0;
+		dm_b = 0;
+	else
+		Area = AR*Area;
+		aa = pp_in.e / pp_out.e;
+		if (aa > 1) then
+					p_AV	=pp_in.e; T_AV=pT_in.e; d	= 1; 	a	=aa;
+					if pF_in.e > 0 then
+						if inport_open == true then
+							F_AV = (1-purity)*F0/(purity*F0*fs + 1);
+						else
+							F_AV = pF_in.e;
+						end;
+					else
+						F_AV = 0;
+					end;
+				else
+					p_AV	=pp_out.e; T_AV=pT_out.e; F_AV= pF_out.e;	d	=-1; a	=1.0/aa;
+		end;
+// Calculate thermodynamic properties from (T,P,x)
+		inarr_ThermoProp = [p_AV;T_AV;F_AV];
+		outarr_ThermoProp = dll(dll_ICE,dll_fcn_thdyn, inarr_ThermoProp);	
+
+		h		= outarr_ThermoProp[4];
+		rgas	= outarr_ThermoProp[1];
+		kap		= outarr_ThermoProp[13];
+	
+		pc = (2.0 / (kap + 1))^(kap / (kap - 1));
+		c = 1 / pc;
+		ksim = sqrt(kap * ((2 / (kap + 1))^((kap + 1) / (kap - 1))));
+		ksin = sqrt(2 * kap / (kap - 1) * (a^(-2 / kap) - a^(-(kap + 1) / kap)));
+		ksil = 1000 * (a - 1) * sqrt(2 * kap / (kap - 1) * (1.001^(-2 / kap) - 1.001^(-(kap + 1) / kap)));
+		ksi1 = if (a > c) then ksim 	else ksin end;
+		ksi = if (a <= 1.001) then
+					ksil
+				else 
+					ksi1
+				end;
+//	Correction of Cd to Pr
+    	Cd = (Cd_corr_coeff[1]*a^2 + Cd_corr_coeff[2]*a + Cd_corr_coeff[3])*Cd;
+		dm = Cd*Area * p_AV / sqrt(rgas * T_AV) * ksi * d;
+		if F_AV > 0 then
+			if inport_open == true then
+				dm_b = (1-purity)*(F0*fs)/(1+F0*fs)*dm;
+			else
+				dm_b = (F_AV*fs)/(1+F_AV*fs)*dm;
+			end;	
+		else 
+			dm_b = 0;
+		end;	
+		dE = dm * h;
+	end;
+
+	pp_in.f = dm;
+	pp_out.f = dm;
+	pT_in.f = dE;
+	pT_out.f = dE;
+	pF_in.f = dm_b;
+	pF_out.f = dm_b;
+
+implementation_end;
+      ExhVVLift 608 239.9
+       description '<Description>
+ <Version>4.0</Version>
+ <LibraryPath>Template\Submodel-Equation.emx</LibraryPath>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <TimeStamp>2007-11-1 22:32:1</TimeStamp>
+ <AllowLibraryUpdate>False</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+       type 'ExhVVLift-Equation'
+        ports
+         signal out lift;
+         signal in CA;
+         signal in CA_start_nom;
+         signal in dCA_lift_nom;
+       end;
+       icon bg
+        figures
+         rectangle 574.9 223.9 641.1 255.8 fill 15132390;
+         text 'name' 609 239.9 16;
+        terminals
+         lift 608 255.9 fixed;
+         CA_start_nom 576 223.9 fixed;
+         dCA_lift_nom 592 223.9 fixed;
+       end;
+       implementation eq
+parameters
+//	real CA_start_nom = 1.1;
+//	real dCA_lift_nom = 1;
+	real global lift_max;
+	real hidden global CA_start_ref; //Reference start CA for start of valve lift
+	real hidden global dCA_lift_up;	 //Lift up time (should not be changed unless file is changed
+	real hidden global dCA_lift_down; //Lift down time (should not be changed unless file is changed
+	real hidden global dCA_lift_top_ref; //Reference duration for lift up
+variables
+	real CA_start, dCA_lift, dCA_total, CA_VV;
+	real phi;
+code
+	CA_start = CA_start_nom*CA_start_ref;
+	dCA_lift = dCA_lift_nom*dCA_lift_top_ref;	
+	dCA_total = dCA_lift_up + dCA_lift + dCA_lift_down;
+	phi = CA*180/pi mod 360;
+	if phi > CA_start and phi < CA_start + dCA_total then
+		CA_VV = phi - CA_start;
+		if CA_VV <= dCA_lift_up then
+			lift = table('ExhVVProfUp.csv',CA_VV);
+		else 	if CA_VV <= dCA_lift_up + dCA_lift then
+					lift = 1;
+			  	else 	if CA_VV <= dCA_lift_up + dCA_lift + dCA_lift_down then
+							CA_VV = phi - (CA_start + dCA_lift_up + dCA_lift);
+							lift = table('ExhVVProfDown.csv',CA_VV);
+					 	else 
+					 		lift = 0;	
+						end;
+				end;
+		end;
+	else
+		lift = 0;	
+	end;			
+	lift = lift_max*lift;
+ implementation_end;
+      FlowSensor1 400 416
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\FlowSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 15:50:53</TimeStamp>
+</Description>
+</Information>';
+       knot FlowSensor
+        ports
+         pseudothermal knot in p1 [1];
+         power knot out p2 [1];
+         signal knot out flow [1];
+        restrictions
+         causality constraint not_equal p1 p2;
+       end;
+       icon bg ellipse
+        figures
+         ellipse 393.1 408.8 406.9 423.1 fill 16777215;
+         text 'f' 400 415.2;
+       end;
+       implementation eq
+equations
+	p2.f = p1.f;
+	p1.e = p2.e;
+	flow = p1.f;
+implementation_end;
+      FlowSensor3 448 288
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\FlowSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 15:50:53</TimeStamp>
+</Description>
+</Information>';
+       knot FlowSensor
+        ports
+         power knot in p1 [1];
+         pseudothermalh knot out p2 [1];
+         signal knot out flow [1];
+        restrictions
+         causality constraint not_equal p1 p2;
+       end;
+       icon bg ellipse
+        figures
+         ellipse 441.1 280.8 454.9 295.1 fill 16777215;
+         text 'f' 448 287.2;
+       end;
+       implementation eq
+equations
+	p2.f = p1.f;
+	p1.e = p2.e;
+	flow = p1.f;
+implementation_end;
+      FlowSensor4 424 280
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\FlowSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 15:50:53</TimeStamp>
+</Description>
+</Information>';
+       knot FlowSensor
+        ports
+         power knot in p1 [1];
+         pseudohydraulic knot out p2 [1];
+         signal knot out flow [1];
+        restrictions
+         causality constraint not_equal p1 p2;
+       end;
+       icon bg ellipse
+        figures
+         ellipse 417.1 272.8 430.9 287.1 fill 16777215;
+         text 'f' 424 279.2;
+       end;
+       implementation eq
+equations
+	p2.f = p1.f;
+	p1.e = p2.e;
+	flow = p1.f;
+implementation_end;
+      InValve 304 328
+       description '<Description>
+ <LibraryPath>Bond Graph\R.emx</LibraryPath>
+ <Version>No Version Info</Version>
+ <IsMainModel>0</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+       type beta
+        ports
+         power in pF_in;
+         power out pF_out;
+         pseudohydraulic in pp_in;
+         pseudohydraulic out pp_out;
+         pseudothermalh in pT_in;
+         pseudothermalh out pT_out;
+         signal in pfi; "Crank angle starting with 0 at TDC before intake stroke"
+         signal out beta;
+         signal in m_in;
+         signal in AR;
+         signal boolean out open; "indication for port opening (true : open / false : close)"
+        restrictions
+         causality fixed in pF_in;
+         causality fixed in pF_out;
+         causality fixed in pT_in;
+         causality fixed in pT_out;
+         causality fixed in pp_out;
+         causality fixed in pp_in;
+       end;
+       icon bg bottom
+        figures
+         text 'R' 304 328 51 bold;
+        terminals
+         pF_in 272 360 fixed;
+         pF_out 336 360 fixed;
+         pp_in 272 312 fixed;
+         pp_out 336 312 fixed;
+         pT_in 272 336 fixed;
+         pT_out 336 336 fixed;
+         pfi 304 296 fixed;
+       end;
+       implementation eq
+parameters
+	real global nstroke;   //number of stroke of the engine
+	real global fs;			//Stoichiometric fuel-air ratio
+	real global slag, alam;  //stroke, ratio of crank rod to conneting rod
+// Thermo package
+	string global dll_ICE;
+	string dll_fcn_thdyn 	= 'thdyn_CombGasZach';
+// Port dimension
+	real global N_p;				//No of ports
+	real global Y;				//Height of the ports
+	real global X;				//Width of the ports
+
+// Parameters for purity calculation
+	real global Diam;	//Bore size	
+	real global kai; //Shape factor for 'S-type' curve;
+	real global delta; //Shape factor for 'S-type' curve;
+	
+
+
+variables
+	real Area;
+	real a_CR, l_CR, x_p;  // Length of crank rod, connecting rod, position of piston relative to TDC
+	real r;				// Radius of the corner of the port	
+	real y_open, theta;		// Opening height and angle for corner
+	real Cd;					// openging ratio
+	real hidden inarr_ThermoProp[3], outarr_ThermoProp[13];
+	real hidden aa, pc, ksi, ksi1, ksim, ksin, ksil, p_AV, T_AV, F_AV, d, a, c;
+	real hidden h, rgas, kap;
+	real interesting dm, dm_b, dE;  
+	real m_in_prev, m_in_temp;
+	real lambda_s; //Delivery ratio
+	real rho0, Vd;  // Reference density for purity calculation at air reciever
+	real phi0;      // angle at the opening start
+	boolean reset;  // indication for port opening begins (ture : open begin / false : otherwise)
+	real phi;
+	real A_R;
+	
+	
+initialequations
+	a_CR = slag/2;
+	l_CR = a_CR / alam;
+	r = X / 2;
+	Vd = pi*Diam^2/4*slag;		
+	open = true;
+	reset = false;
+	m_in_prev = 0;
+	phi0 = 0;
+code
+	phi = pfi*180/pi mod 360;
+// Calculating the position of the piston w.r.t. TDC
+	x_p = a_CR + l_CR - (a_CR*cos(pfi) + sqrt(l_CR^2 - (a_CR*sin(pfi))^2));
+   if x_p > (slag - Y) then
+		open = true;
+// Calculating the area and discharge coefficient of the port
+		y_open = x_p - (slag - Y);
+      if y_open < r then
+      	theta = arcsin((r-y_open)/r);
+         Area = (X-2*r)*y_open + 0.5*r^2*(pi/2-theta) - 0.5*(r-y_open)*r*cos(theta);
+      else if y_open > (Y - r) then
+      			y_open = y_open - (Y - r);
+               theta = arcsin(min([y_open/r;1]));
+               Area = X*(Y-r) - 0.43*r^2 + (X-2*r)*y_open + 0.5*r^2*theta + 0.5*r*cos(theta)*y_open;
+           else
+               Area = X*y_open - 0.43*r^2;
+           end;
+      end;
+		Area = AR*Area;
+      A_R = Area / (X*Y - 0.86*r^2);
+      Area = Area*N_p;
+      Cd = -5.408*A_R^5 + 15.9*A_R^4 + -19.03*A_R^3 + 11.39*A_R^2 + -3.284*A_R + 1.143;
+		// The fit model was taken from the Sher, E. (1990). Scavenging 
+		// the two-stroke engine. Progress in Energy and Combustion Science, 
+		// 16(2), 95-124. 
+      Cd = min([0.98, Cd]);
+// Determine the flow direction		
+		aa = pp_in.e / pp_out.e;
+		if (aa > 1) then
+			p_AV	=pp_in.e; T_AV=pT_in.e; F_AV= pF_in.e;	d	= 1; 	a	=aa;
+		else
+			p_AV	=pp_out.e; T_AV=pT_out.e; F_AV= pF_out.e;	d	=-1; a	=1.0/aa;
+		end;
+/// Calculate thermodynamic properties from (P,T,F)
+
+		inarr_ThermoProp = [p_AV;T_AV;F_AV];
+		outarr_ThermoProp = dll(dll_ICE,dll_fcn_thdyn, inarr_ThermoProp);	
+
+		h		= outarr_ThermoProp[4];
+		rgas	= outarr_ThermoProp[1];
+		kap		= outarr_ThermoProp[13];
+/// Calculate the flow based on ideal nozzle equation for compressible gas
+		pc = (2.0 / (kap + 1))^(kap / (kap - 1));
+		c = 1 / pc;
+		ksim = sqrt(kap * ((2 / (kap + 1))^((kap + 1) / (kap - 1))));
+		ksin = sqrt(2 * kap / (kap - 1) * (a^(-2 / kap) - a^(-(kap + 1) / kap)));
+		ksil = 1000 * (a - 1) * sqrt(2 * kap / (kap - 1) * (1.001^(-2 / kap) - 1.001^(-(kap + 1) / kap)));
+		ksi1 = if (a > c) then ksim 	else ksin end;
+		ksi = if (a <= 1.001) then ksil else ksi1 end;
+		dm = Cd*Area * p_AV / sqrt(rgas * T_AV) * ksi * d;
+		dE = dm * h;
+		dm_b = dm * (F_AV*fs)/(1+F_AV*fs);
+// Calculation of purity of the exhaust
+		if reset == true then
+			rho0 = pp_in.e / 287 / pT_in.e;
+			m_in_temp = m_in - m_in_prev;
+			lambda_s = m_in_temp / rho0 / Vd;
+			phi0 = phi;
+			beta = 0;
+			reset = false;
+		else
+			m_in_temp = m_in - m_in_prev;
+			lambda_s = m_in_temp / rho0 / Vd;
+			beta = 1 - exp(-kai*lambda_s*((phi - phi0)/(2*(180-phi0)))^delta);
+		end;
+   else
+      dm = 0;
+      dE = 0;
+		dm_b = 0;	
+		beta = 0;
+		lambda_s = 0;
+		open = false;
+   end;
+	
+	if open == false and reset == false then
+		reset = true;
+		m_in_prev = m_in;
+	end;
+		
+
+	pp_in.f = dm;
+	pp_out.f = dm;
+	pT_in.f = dE;
+	pT_out.f = dE;
+	pF_in.f = dm_b;
+	pF_out.f = dm_b;
+
+
+				implementation_end;
+      MSf 552 480
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\MSf.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:14:18</TimeStamp>
+</Description>
+</Information>';
+       type MSf
+        ports
+         signal in flow;
+         signal in phi_rad;
+       end;
+       icon bg bottom
+        figures
+         text 'powCyc' 552 480 18 bold;
+       end;
+       implementation eq
+parameters
+	real global Diam, slag;
+	string global dll_ICE;
+	string hidden dll_fcn_mip	= 'ice_mip';
+	
+variables
+	real hidden inarr[2], outarr[1];
+	real hidden Vslag, Yint;
+	real imep, Wcyl;
+	
+initialequations
+	Vslag=pi/4.0*Diam^2*slag;
+	
+equations
+	Yint = int(flow);
+	inarr	=[phi_rad; Yint];
+	outarr	= dll(dll_ICE,dll_fcn_mip, inarr);
+	imep = min([30e5;outarr[1]/Vslag]);
+	Wcyl = outarr[1];
+
+implementation_end;
+      Mux 304 106
+						specifications active 'inputs_2'
+							specification 'default'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal out output [2,1];
+   signal in input2;
+ end;
+ icon bg bottom
+  figures
+   line 129.5 64 129.5 96 width 2;
+   rectangle 125.5 64 133.5 96 color -1;
+   text '2' 134.5 91 color 8421504 8;
+  terminals
+   input1 129.5 72 fixed;
+   output 129.5 80 fixed;
+   input2 129.5 88 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2];implementation_end;
+specification_end;
+							specification 'inputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input;
+   signal out output;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = input;implementation_end;
+specification_end;
+							specification 'inputs_2'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal out output [2,1];
+   signal in input2;
+ end;
+ icon bg bottom
+  figures
+   line 320 104 288 104 width 2;
+   rectangle 288 100 320 108 color -1;
+   text '2' 293 109 color 8421504 8;
+  terminals
+   input1 312 104 fixed;
+   output 304 104 fixed;
+   input2 296 104 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2];implementation_end;
+specification_end;
+							specification 'inputs_3'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal out output [3,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '3' 133 82 color 8421504 8;
+  terminals
+   input1 128 64 fixed;
+   input2 128 72 fixed;
+   input3 128 80 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3];implementation_end;
+specification_end;
+							specification 'inputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal out output [4,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   input1 128 56 fixed;
+   input2 128 64 fixed;
+   input3 128 80 fixed;
+   input4 128 88 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4];implementation_end;
+specification_end;
+							specification 'inputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal out output [5,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   input1 128 56 fixed;
+   input2 128 64 fixed;
+   input3 128 72 fixed;
+   input4 128 80 fixed;
+   input5 128 88 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5];implementation_end;
+specification_end;
+							specification 'inputs_6'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal out output [6,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '6' 133 83 color 8421504 8;
+  terminals
+   input1 128 48 fixed;
+   input2 128 56 fixed;
+   input3 128 64 fixed;
+   input4 128 80 fixed;
+   input5 128 88 fixed;
+   input6 128 96 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6];implementation_end;
+specification_end;
+							specification 'inputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal out output [7,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   input1 128 48 fixed;
+   input2 128 56 fixed;
+   input3 128 64 fixed;
+   input4 128 72 fixed;
+   input5 128 80 fixed;
+   input6 128 88 fixed;
+   input7 128 96 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7];implementation_end;
+specification_end;
+							specification 'inputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal in input8;
+   signal out output [8,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   input1 128 40 fixed;
+   input2 128 48 fixed;
+   input3 128 56 fixed;
+   input4 128 64 fixed;
+   input5 128 80 fixed;
+   input6 128 88 fixed;
+   input7 128 96 fixed;
+   input8 128 104 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7; input8];implementation_end;
+specification_end;
+							specification 'inputs_9'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Mux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Mux
+  ports
+   signal in input1;
+   signal in input2;
+   signal in input3;
+   signal in input4;
+   signal in input5;
+   signal in input6;
+   signal in input7;
+   signal in input8;
+   signal in input9;
+   signal out output [9,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   text '9' 132 83 color 8421504 8;
+  terminals
+   input1 128 40 fixed;
+   input2 128 48 fixed;
+   input3 128 56 fixed;
+   input4 128 64 fixed;
+   input5 128 72 fixed;
+   input6 128 80 fixed;
+   input7 128 88 fixed;
+   input8 128 96 fixed;
+   input9 128 104 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = [input1; input2; input3; input4; input5; input6; input7; input8; input9];implementation_end;
+specification_end;
+						end;
+      plug p_max 368 40;
+      plug V_cyl 392 504;
+      plug p_cyl 272 384;
+      plug exh_open 640 280;
+      plug output1 304 40;
+      plug input 488 40;
+      plug out 664 336;
+      plug in 208 336;
+      plug M 448 696;
+      plug T_w_phys 208 432;
+      PowerDemux 241.5 336
+						specifications active 'inputs_3'
+							specification 'default'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power in input [2,1];
+   power out output2;
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+ end;
+ icon bg bottom
+  figures
+   line 129.5 64 129.5 96 width 2;
+   rectangle 125.5 64 133.5 96 color -1;
+   text '2' 134.5 91 color 8421504 8;
+  terminals
+   output1 129.5 72 fixed;
+   input 129.5 80 fixed;
+   output2 129.5 88 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e];
+	input.f = [output1.f; output2.f];implementation_end;
+specification_end;
+							specification 'inputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power in input;
+   power out output;
+  restrictions
+   causality constraint not_equal output input;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = output.e;
+	input.f = output.f;implementation_end;
+specification_end;
+							specification 'inputs_2'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power in input [2,1];
+   power out output2;
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '2' 133 83 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   input 128 72 fixed;
+   output2 128 80 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e];
+	input.f = [output1.f; output2.f];implementation_end;
+specification_end;
+							specification 'inputs_3'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power in input [3,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+ end;
+ icon bg bottom
+  figures
+   line 240 320 240 352 width 2;
+   rectangle 236 320 244 352 color -1;
+   text '3' 245 346 color 8421504 8;
+  terminals
+   output1 240 328 fixed;
+   output2 240 336 fixed;
+   output3 240 344 fixed;
+   input 240 336 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e];
+	input.f = [output1.f; output2.f; output3.f];implementation_end;
+specification_end;
+							specification 'inputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power in input [4,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 80 fixed;
+   output4 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e];
+	input.f = [output1.f; output2.f; output3.f; output4.f];implementation_end;
+specification_end;
+							specification 'inputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power out output5;
+   power in input [5,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+   causality constraint not_equal output5 input;
+end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 72 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e; output5.e];
+	input.f = [output1.f; output2.f; output3.f; output4.f; output5.f];implementation_end;
+specification_end;
+							specification 'inputs_6'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power out output5;
+   power out output6;
+   power in input [6,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+   causality constraint not_equal output5 input;
+   causality constraint not_equal output6 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '6' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   output6 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e; output5.e; output6.e];
+	input.f = [output1.f; output2.f; output3.f; output4.f; output5.f; output6.f];implementation_end;
+specification_end;
+							specification 'inputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power out output5;
+   power out output6;
+   power out output7;
+   power in input [7,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+   causality constraint not_equal output5 input;
+   causality constraint not_equal output6 input;
+   causality constraint not_equal output7 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 72 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e; output5.e; output6.e; output7.e];
+	input.f = [output1.f; output2.f; output3.f; output4.f; output5.f; output6.f; output7.f];implementation_end;
+specification_end;
+							specification 'inputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power out output5;
+   power out output6;
+   power out output7;
+   power out output8;
+   power in input [8,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+   causality constraint not_equal output5 input;
+   causality constraint not_equal output6 input;
+   causality constraint not_equal output7 input;
+   causality constraint not_equal output8 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   output8 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e; output5.e; output6.e; output7.e; output8.e];
+	input.f = [output1.f; output2.f; output3.f; output4.f; output5.f; output6.f; output7.f; output8.f];implementation_end;
+specification_end;
+							specification 'inputs_9'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerDemux
+  ports
+   power out output1;
+   power out output2;
+   power out output3;
+   power out output4;
+   power out output5;
+   power out output6;
+   power out output7;
+   power out output8;
+   power out output9;
+   power in input [9,1];
+  restrictions
+   causality constraint not_equal output1 input;
+   causality constraint not_equal output2 input;
+   causality constraint not_equal output3 input;
+   causality constraint not_equal output4 input;
+   causality constraint not_equal output5 input;
+   causality constraint not_equal output6 input;
+   causality constraint not_equal output7 input;
+   causality constraint not_equal output8 input;
+   causality constraint not_equal output9 input;
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   text '9' 132 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 72 fixed;
+   output6 128 80 fixed;
+   output7 128 88 fixed;
+   output8 128 96 fixed;
+   output9 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	input.e = [output1.e; output2.e; output3.e; output4.e; output5.e; output6.e; output7.e; output8.e; output9.e];implementation_end;
+	input.f = [output1.f; output2.f; output3.f; output4.f; output5.f; output6.f; output7.f; output8.f; output9.f];specification_end;
+						end;
+      PowerMux 625.5 336
+						specifications active 'inputs_3'
+							specification 'default'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerDemux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power out output [2,1];
+   power in input2;
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+ end;
+ icon bg bottom
+  figures
+   line 129.5 64 129.5 96 width 2;
+   rectangle 125.5 64 133.5 96 color -1;
+   text '2' 134.5 91 color 8421504 8;
+  terminals
+   input1 129.5 72 fixed;
+   output 129.5 80 fixed;
+   input2 129.5 88 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e];
+	output.f = [input1.f; input2.f];implementation_end;
+specification_end;
+							specification 'inputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input;
+   power out output;
+  restrictions
+   causality constraint not_equal input output;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = input.e;
+	output.f = input.f;implementation_end;
+specification_end;
+							specification 'inputs_2'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power out output [2,1];
+   power in input2;
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '2' 133 83 color 8421504 8;
+  terminals
+   input1 128 64 fixed;
+   output 128 72 fixed;
+   input2 128 80 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e];
+	output.f = [input1.f; input2.f];implementation_end;
+specification_end;
+							specification 'inputs_3'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power out output [3,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+ end;
+ icon bg bottom
+  figures
+   line 624 320 624 352 width 2;
+   rectangle 620 320 628 352 color -1;
+   text '3' 629 346 color 8421504 8;
+  terminals
+   input1 624 328 fixed;
+   input2 624 336 fixed;
+   input3 624 344 fixed;
+   output 624 336 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e];
+	output.f = [input1.f; input2.f; input3.f];implementation_end;
+specification_end;
+							specification 'inputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power out output [4,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   input1 128 56 fixed;
+   input2 128 64 fixed;
+   input3 128 80 fixed;
+   input4 128 88 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e];
+	output.f = [input1.f; input2.f; input3.f; input4.f];implementation_end;
+specification_end;
+							specification 'inputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power in input5;
+   power out output [5,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+   causality constraint not_equal input5 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   input1 128 56 fixed;
+   input2 128 64 fixed;
+   input3 128 72 fixed;
+   input4 128 80 fixed;
+   input5 128 88 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e; input5.e];
+	output.f = [input1.f; input2.f; input3.f; input4.f; input5.f];implementation_end;
+specification_end;
+							specification 'inputs_6'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power in input5;
+   power in input6;
+   power out output [6,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+   causality constraint not_equal input5 output;
+   causality constraint not_equal input6 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '6' 133 83 color 8421504 8;
+  terminals
+   input1 128 48 fixed;
+   input2 128 56 fixed;
+   input3 128 64 fixed;
+   input4 128 80 fixed;
+   input5 128 88 fixed;
+   input6 128 96 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e; input5.e; input6.e];
+	output.f = [input1.f; input2.f; input3.f; input4.f; input5.f; input6.f];implementation_end;
+specification_end;
+							specification 'inputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power in input5;
+   power in input6;
+   power in input7;
+   power out output [7,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+   causality constraint not_equal input5 output;
+   causality constraint not_equal input6 output;
+   causality constraint not_equal input7 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   input1 128 48 fixed;
+   input2 128 56 fixed;
+   input3 128 64 fixed;
+   input4 128 72 fixed;
+   input5 128 80 fixed;
+   input6 128 88 fixed;
+   input7 128 96 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e; input5.e; input6.e; input7.e];
+	output.f = [input1.f; input2.f; input3.f; input4.f; input5.f; input6.f; input7.f];implementation_end;
+specification_end;
+							specification 'inputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power in input5;
+   power in input6;
+   power in input7;
+   power in input8;
+   power out output [8,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+   causality constraint not_equal input5 output;
+   causality constraint not_equal input6 output;
+   causality constraint not_equal input7 output;
+   causality constraint not_equal input8 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   input1 128 40 fixed;
+   input2 128 48 fixed;
+   input3 128 56 fixed;
+   input4 128 64 fixed;
+   input5 128 80 fixed;
+   input6 128 88 fixed;
+   input7 128 96 fixed;
+   input8 128 104 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e; input5.e; input6.e; input7.e; input8.e];
+	output.f = [input1.f; input2.f; input3.f; input4.f; input5.f; input6.f; input7.f; input8.f];implementation_end;
+specification_end;
+							specification 'inputs_9'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Bond Graph\PowerMux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type PowerMux
+  ports
+   power in input1;
+   power in input2;
+   power in input3;
+   power in input4;
+   power in input5;
+   power in input6;
+   power in input7;
+   power in input8;
+   power in input9;
+   power out output [9,1];
+  restrictions
+   causality constraint not_equal input1 output;
+   causality constraint not_equal input2 output;
+   causality constraint not_equal input3 output;
+   causality constraint not_equal input4 output;
+   causality constraint not_equal input5 output;
+   causality constraint not_equal input6 output;
+   causality constraint not_equal input7 output;
+   causality constraint not_equal input8 output;
+   causality constraint not_equal input9 output;
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   text '9' 132 83 color 8421504 8;
+  terminals
+   input1 128 40 fixed;
+   input2 128 48 fixed;
+   input3 128 56 fixed;
+   input4 128 64 fixed;
+   input5 128 72 fixed;
+   input6 128 80 fixed;
+   input7 128 88 fixed;
+   input8 128 96 fixed;
+   input9 128 104 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output.e = [input1.e; input2.e; input3.e; input4.e; input5.e; input6.e; input7.e; input8.e; input9.e];implementation_end;
+	output.f = [input1.f; input2.f; input3.f; input4.f; input5.f; input6.f; input7.f; input8.f; input9.f];specification_end;
+						end;
+      QSensor1 368 312
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\QSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:34:15</TimeStamp>
+</Description>
+</Information>';
+       knot QSensor
+        ports
+         pseudohydraulic knot in p1 [1];
+         pseudohydraulic knot out p2 [1];
+         signal knot out q [1];
+        restrictions
+         causality constraint not_equal p1 p2;
+       end;
+       icon bg ellipse
+        figures
+         ellipse 361.1 305.3 374.9 319.4 fill 16777215;
+         text 'q' 367.5 309.6;
+       end;
+       implementation eq
+equations
+	p2.f = p1.f;
+	p1.e = p2.e;
+	q = int (p1.f);
+implementation_end;
+      ROHR1 446.9 232
+       type Submodel
+        ports
+         power out pp;
+         power out pF;
+         power out pT;
+         signal in x_lev; "Controller Input (Throttle)"
+         signal in omega; "Engine speed (rad/s)"
+         signal integer out Comb_state; "0: Start of new cycle / 1 : injection started / 2 : start of combustion / 5: end of combustion"
+         signal out p_max [2,1];
+         signal in pfi;
+         signal in fiinj;
+        restrictions
+         causality fixed in pp;
+         causality fixed in pF;
+         causality fixed in pT;
+       end;
+       icon bg
+        figures
+         rectangle 411.1 217 482.6 247 fill 12895428;
+         text 'name' 447.9 232 16;
+        terminals
+         pp 423.9 256 fixed;
+         pF 470.9 256 fixed;
+         pT 446.9 256 fixed;
+         x_lev 422.9 208 fixed;
+         omega 478.9 208 fixed;
+         Comb_state 486.9 256 fixed;
+         pfi 446.9 208 fixed;
+         fiinj 462.9 208 fixed;
+       end;
+       implementation eq
+parameters
+	integer global ncyl;
+	real global nstroke;
+	real global hn;
+//	real global fiinj;
+	real global mqf_max;
+	real global pemax;
+	real global ommax;
+	real global T_L;
+	real global T_H;
+	real global fs;
+	real global slag, Diam, alam, Veps;
+	integer global CASE;
+//Fuel composition [C H O N]
+	real global FC[4];
+// Englib
+	string global dll_ICE;
+//	string dll_fcn_rohr    = 'ice_rohr';
+	string dll_icemax    = 'ice_pfimax';
+	string hidden dll_fcn_ThDP = 'thdyn_CombGasZach'; // subroutines names in the dll file
+//	string dll_fcn_rohr = 		'ice_rohr2';
+	real wiebe_para[9] = [0.07;0.57;3.05;11;24;56.3;1.5;1;0.7];
+variables
+	real phi;
+	real phi_comb;
+	real P, F, T, V_cyl, m_cyl0, Vc;
+	real dmf;
+	real mqf_des, mqf, mqf_min;
+//	real inarr_ROHR[20], outarr_ROHR[13];
+	real fiig;
+	real hidden inarr_pfimax[3], outarr_pfimax[2];
+	real hidden inarr_ThermoProp[3], outarr_ThermoProp[13];
+	real Pmax, Pmax_pfi;
+//	real bmepnom, omeganom;
+//	real eta_i, sfoc;
+//	real mfPC, mf, Oldmf, OldmfPC;
+	boolean reset;
+	
+	real dphi_comb, igdel, dmf_nom;
+	real yp, ym, yl, yptomp, ymtomm, yltoml, df1dy, df2dy, df3dy;
+	
+
+initialequations
+	Comb_state = 0;
+	// 0: Start of new cycle / 1 : injection started / 2 : start of combustion / 5: end of combustion
+//	if fiinj > 180 then fiinj = fiinj - 360; end;	
+	fiig = 0;
+	reset = true;
+	mqf = 0;
+	dmf = 0;
+	Vc	= pi*Diam^2/4.0*slag/(Veps-1);
+	dphi_comb = wiebe_para[3] + wiebe_para[6];
+
+code
+	P=pp.e; F=pF.e; T=pT.e;
+	phi = pfi*180/pi mod 360;
+// Deternmine the mass of fuel per cycle not exceeding the stoichiometric ratio
+	if phi > 180 then 
+		phi_comb= phi - 360;  
+	else
+		phi_comb = phi;
+	end;
+	if phi_comb > fiinj and Comb_state == 0 then
+		Comb_state = 1;
+		mqf_des = mqf_max * x_lev;
+		inarr_ThermoProp = [P;T;F];
+		outarr_ThermoProp = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);	
+		V_cyl = pi*Diam^2*slag^2/8*alam*(alam + 1 - (alam*cos(pfi) + sqrt(1 - (alam*sin(pfi))^2))) + Vc;
+		m_cyl0 = P*V_cyl/outarr_ThermoProp[1]/T;	
+		mqf_min = m_cyl0*fs;	
+		mqf = min([mqf_des;m_cyl0*fs]);
+		igdel = 180/pi*omega*180/pi*0.00020*exp(4650/T)*(P*1e-5)^(-1.19);
+		if igdel > 30 then
+			Comb_state = 5;
+		end;
+		fiig = fiinj + igdel;
+		reset = false;		
+	else if phi_comb > fiig and phi_comb < fiig + dphi_comb and Comb_state == 1 then
+				Comb_state = 2;
+				reset = true;
+			else	if phi_comb > fiig + dphi_comb and reset == true then
+						Comb_state = 5;
+						reset = false;
+					end;
+			end;
+	end;		
+	
+	if phi_comb > -20 and phi_comb < -15 then
+		Comb_state = 0;
+		reset = true;
+	end;			
+
+	switch Comb_state
+		case 2 do
+			yp = max([(phi_comb - fiig) / wiebe_para[4];0]);
+			ym = max([0;(phi_comb - (fiig + wiebe_para[3]))/wiebe_para[5]]);
+			yl = max([0;(phi_comb - (fiig + wiebe_para[3]))/wiebe_para[6]]);
+			yptomp = yp^wiebe_para[7];
+			ymtomm = ym^wiebe_para[8];
+			yltoml = yl^wiebe_para[9];
+			df1dy = 6.9*(wiebe_para[7] + 1)*yptomp*exp(-6.9*yp*yptomp) / wiebe_para[4];
+			df2dy = 6.9*(wiebe_para[8] + 1)*ymtomm*exp(-6.9*ym*ymtomm) / wiebe_para[5];
+			df3dy = 6.9*(wiebe_para[9] + 1)*yltoml*exp(-6.9*yl*yltoml) / wiebe_para[6];
+			dmf_nom = wiebe_para[1]*df1dy + wiebe_para[2]*df2dy + (1-wiebe_para[1] - wiebe_para[2])*df3dy;
+			dmf = mqf*dmf_nom*omega*180/pi;
+		default do
+			dmf = 0;
+	end;	
+
+
+// Calculate normalized BMEP and omega (0~1)
+//	bmepnom = max([0.5;0/pemax]);
+//	bmepnom = min([1;bmepnom]);
+//	omeganom = max([0.61;omega/ommax]);
+//	omeganom = min([1;omeganom]);
+
+// Calculate the rate of heat release
+//	inarr_ROHR[1:11]=[nstroke; fiinj; pfi; P; T; omega; mqf ; hn; bmepnom; Comb_state; fiig];
+//	inarr_ROHR[12:20] = WiebePara;
+//	outarr_ROHR=dll(dll_ICE,dll_fcn_rohr, inarr_ROHR);
+//	if Comb_state == 1 
+//	dmf = outarr_ROHR[1];
+//	dqf = outarr_ROHR[2];
+//	Comb_state = outarr_ROHR[3];
+//	fiig = outarr_ROHR[4];
+//	WiebePara = outarr_ROHR[5:13];
+//	if dmf>0 and dmf<1e-4 then
+//		dmf = 0;
+//	end;
+
+	pp.f=dmf;
+	pF.f= dmf;
+	pT.f=dmf*hn;
+	
+//	if Comb_state == 5 then
+//		reset = true;
+//	end;
+	
+// Get Pmax for cycle
+ 	
+	inarr_pfimax=[time; phi; P];
+	outarr_pfimax=dll(dll_ICE,dll_icemax, inarr_pfimax);
+
+	Pmax=outarr_pfimax[1];Pmax_pfi=outarr_pfimax[2];
+
+	p_max = [Pmax;Pmax_pfi];
+
+
+
+implementation_end;
+      Splitter10 320 384
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 316.8 380.8 323.2 387.2 color -1 fill 0;
+         ellipse 315.7 379.7 324.3 388.3 color -1;
+        terminals
+         input 320 384 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter11 416 456
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 412.8 452.8 419.2 459.2 color -1 fill 0;
+         ellipse 411.7 451.7 420.3 460.3 color -1;
+        terminals
+         input 416 456 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter12 312 136
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 308.8 132.8 315.2 139.2 color -1 fill 0;
+         ellipse 307.7 131.7 316.3 140.3 color -1;
+        terminals
+         input 312 136 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter13 728 456
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 724.8 452.8 731.2 459.2 color -1 fill 0;
+         ellipse 723.7 451.7 732.3 460.3 color -1;
+        terminals
+         input 728 456 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter15 680 440
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 676.8 436.8 683.2 443.2 color -1 fill 0;
+         ellipse 675.7 435.7 684.3 444.3 color -1;
+        terminals
+         input 680 440 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter3 448 608
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 444.8 604.8 451.2 611.2 color -1 fill 0;
+         ellipse 443.7 603.7 452.3 612.3 color -1;
+        terminals
+         input 448 608 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter4 456 608
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 452.8 604.8 459.2 611.2 color -1 fill 0;
+         ellipse 451.7 603.7 460.3 612.3 color -1;
+        terminals
+         input 456 608 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter6 320 608
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 316.8 604.8 323.2 611.2 color -1 fill 0;
+         ellipse 315.7 603.7 324.3 612.3 color -1;
+        terminals
+         input 320 608 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter7 608 160
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 604.8 156.8 611.2 163.2 color -1 fill 0;
+         ellipse 603.7 155.7 612.3 164.3 color -1;
+        terminals
+         input 608 160 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter8 448 160
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 444.8 156.8 451.2 163.2 color -1 fill 0;
+         ellipse 443.7 155.7 452.3 164.3 color -1;
+        terminals
+         input 448 160 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Splitter9 576 536
+       description '<Description><Version>4.0</Version>
+   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
+  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+</Description>';
+       knot Splitter
+        ports
+         signal knot duplicatable out output [1];
+         signal knot in input [1];
+       end;
+       icon bg ellipse
+        figures
+         ellipse 572.8 532.8 579.2 539.2 color -1 fill 0;
+         ellipse 571.7 531.7 580.3 540.3 color -1;
+        terminals
+         input 576 536 fixed;
+       end;
+       implementation eq
+equations
+    collect (output) = input;
+implementation_end;
+      Submodel1 344 432
+       type 'Submodel-Graphical'
+        ports
+         power in pQ;
+         signal in Vol;
+         signal in Pcyl;
+         signal in omega;
+         signal out T_w_phys;
+       end;
+       icon bg
+        figures
+         text 'dQ' 344 432 36;
+        terminals
+         pQ 368 416 fixed;
+         Vol 368 456 fixed;
+         Pcyl 320 416 fixed;
+         omega 320 456 fixed;
+       end;
+       implementation bg
+        submodels
+         C 272 200
+          description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\C.emx</LibraryPath>
+  <TimeStamp>2011-11-29 15:58:35</TimeStamp>
+</Description>
+</Information>';
+          type C
+           ports
+            power in p;
+            signal out state;
+           restrictions
+            causality preferred out p;
+          end;
+          icon bg bottom
+           figures
+            text 'C' 272 200 18 bold;
+          end;
+          implementation eq
+parameters
+	real global mCp;
+	real global T_w_init;
+variables
+	real global E_init;
+initialequations
+	E_init = mCp*T_w_init;		
+equations
+	state = int(p.f, E_init);
+	p.e = state / mCp;
+implementation_end;
+         plug pQ 30 135;
+         plug Vol 112.5 52.5;
+         plug Pcyl 165 52.5;
+         plug omega 217.5 52.5;
+         plug T_w_phys 272 48;
+         R 360 136
+          description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\R.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:35:37</TimeStamp>
+</Description>
+</Information>';
+          type R
+           ports
+            power in p;
+          end;
+          icon bg bottom
+           figures
+            text 'R' 360 136 18 bold;
+          end;
+          implementation eq
+parameters
+	real global C_cylHT[4];
+	integer global ncyl;
+variables
+	real T_w;	
+equations
+	T_w = p.e;
+	p.f = (((C_cylHT[1]*T_w + C_cylHT[2])*T_w + C_cylHT[3])*T_w + C_cylHT[4])*1e3/ncyl;
+implementation_end;
+         R1 168 136
+          type R
+           ports
+            power in pTCyl;
+            power out pTwall;
+            signal in Vol;
+            signal in Pcyl;
+            signal in omega;
+           restrictions
+            causality fixed in pTCyl;
+          end;
+          icon bg bottom
+           figures
+            text 'R' 168 136 18 bold;
+          end;
+          implementation eq
+parameters
+	real global slag, Diam;
+	real Cylhead= 1;
+variables
+	real hidden Area, AreaLin, AreaPis, alfa;
+	real Q;
+initialequations
+	AreaPis = 2*pi/4.0*Diam^2;	
+equations				
+	AreaLin=Vol*4.0/Diam;
+	Area = AreaPis + AreaLin;
+	alfa = Cylhead*sqrt(Pcyl*pTCyl.e*1.0e-5)*(slag*omega/pi)^0.333;
+	Q = alfa*Area*(pTCyl.e-pTwall.e);    
+
+	pTCyl.f= Q;
+	pTwall.f= Q;
+implementation_end;
+         ZeroJunction 272 136
+          description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\ZeroJunction.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:45:16</TimeStamp>
+</Description>
+</Information>';
+          knot ZeroJunction
+           ports
+            power knot duplicatable none p [1];
+            signal knot out effort [1];
+           restrictions
+            causality constraint one_in p;
+          end;
+          icon bg
+           figures
+            text '0' 272 136 18 bold;
+          end;
+          implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+implementation_end;
+         ZeroJunction1 97.5 135
+          knot ZeroJunction
+           ports
+            power knot duplicatable none p [1];
+            signal knot out effort [1];
+           restrictions
+            causality constraint one_in p;
+          end;
+          icon bg
+           figures
+            text '0' 97.5 135 18 bold;
+          end;
+          implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+    implementation_end;
+        end;
+        connections
+         pQ => ZeroJunction1\p;
+         ZeroJunction1\p => R1\pTCyl;
+         R1\pTwall => ZeroJunction\p;
+         ZeroJunction\p => C\p;
+         ZeroJunction\p => R\p;
+         Vol -> R1\Vol;
+         Pcyl -> R1\Pcyl;
+         omega -> R1\omega;
+         ZeroJunction\effort -> T_w_phys;
+        end;
+       implementation_end;
+      Thdyn_Cont_Vol_Eng_Cyl 448 432
+       description '<Description>
+ <LibraryPath>Bond Graph\C.emx</LibraryPath>
+ <Version>No Version Info</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+<Description>Thermodynamic control volume with fixed volume and no chemical reaction inside</Description>
+</Description>';
+       type C
+        ports
+         pseudohydraulic in pp;
+         power in pF;
+         pseudothermalh in pT;
+         pneumatic out ppV;
+         signal out Cyl_vol;
+         signal out m_air_cyl;
+         pseudothermal out pHT;
+         signal in dmfb;
+         signal in omega;
+         signal in phi {rad} ;
+        restrictions
+         causality preferred out pp;
+         causality fixed out pHT;
+       end;
+       icon bg bottom
+        figures
+         text 'C' 448 432 51 bold;
+        terminals
+         pp 424 408 fixed;
+         pF 472 408 fixed;
+         pT 448 408 fixed;
+         ppV 448 456 fixed;
+         Cyl_vol 424 456 fixed;
+         pHT 424 416 fixed;
+         dmfb 472 432 fixed;
+         omega 472 456 fixed;
+         phi 472 440 fixed;
+       end;
+       implementation eq
+parameters
+	integer icyl = 1;
+	integer global ncyl;
+	real global FComb;
+	real global slag, Diam, alam, Veps;
+	real global pfi0[ncyl];
+	real global nstroke;
+	real global fs;
+	real global hn;
+	string global dll_ICE;	// dll filename for subroutines
+	string hidden dll_fcn_ThDP = 'thdyn_CombGasZachV1'; // subroutines names in the dll file
+	string hidden dll_fcn_th_MEV = 'thdyn_PTFV1'; // subroutines names in the dll file
+
+	real global alpha;  //Ratio of mass of burned zone and unburend zone after mixing
+	real global DPhiMix; // Duration of mixing of a burned zone and an unburned [deg]
+	real global phi0Mix; // Start of mixing of a burned zone and an unburned [deg]
+
+	real global p0[8]; 
+	real global T0[8];
+	real global F0[8];
+
+variables
+	real phi360, phiComb, q;
+	real hidden m0, E0, mb0, V0, Vc, pfi;
+	real hidden mu0, Uu0, mub0, Vu0, mbb0, Ub0, mbbb0, Vb0;
+	real mu, Uu, mub, Vu, mb, Ub, mbb, Vb;
+	real dmu, dUu, dmub, dVu, dmb, dUb, dmbb, dVb, dmMix, mb0Mix, dQu, dQb, dHu, dHb;
+	real p, pu, Tu, Fu, pb, Tb, Fb, errP;
+	real hidden Ru,uu,su,hu,RFu,RPu,RTu,uFu,uPu,uTu,sFu,sPu,sTu,Cpu,Cvu,Ku;
+	real hidden Rb,ub,sb,hb,RFb,RPb,RTb,uFb,uPb,uTb,sFb,sPb,sTb,Cpb,Cvb,Kb;	
+	real hidden Tuu, Tub; //Partial derivatives of temperature w.r.t. u
+	real hidden inarr_ThermoProp[4], outarr_ThermoProp[16];
+	real hidden inarr_ThermoProp1[4], outarr_ThermoProp1[16];
+	real hidden inarr_ThermoProp2[4], outarr_ThermoProp2[16];	
+	real hidden inarr_th_MEV1[9], outarr_th_MEV1[3];	
+	real hidden inarr_th_MEV2[9], outarr_th_MEV2[3];	
+	real hidden	Tu_prev, Tb_prev, Ru_prev, Rb_prev, uu_prev, ub_prev,	Cvu_prev, Cvb_prev;
+	real CR;
+	real hidden u1, u2, u3, u4;
+	real hidden a1, a2;
+	real hidden detJu, detJb; //Determinant of the jacobians of the (p,T,F) -> (R,u,s)
+	real hidden Ffs;
+	boolean resetMix;
+	
+
+initialequations
+	Vc		= pi*Diam^2/4.0*slag/(Veps-1);
+	pfi	= pfi0[icyl]/180.0*pi;
+	V0		= Vc + pi*Diam^2/4.0* ( slag/2.0*(1.0-cos(pfi) + 1.0/alam*(1.0-sqrt(1.0-alam^2*sin(pfi)^2))));
+	
+	inarr_ThermoProp = [p0[icyl];T0[icyl];F0[icyl];fs];	
+	outarr_ThermoProp = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);	
+	
+	m0 	= p0[icyl]/(outarr_ThermoProp[1]*T0[icyl])*V0;
+	mb0   = F0[icyl]*fs/(1+F0[icyl]*fs)*m0;
+	E0 	= m0*outarr_ThermoProp[2];	
+	mu0	= m0*alpha;
+	Uu0	= E0*alpha;
+	mub0	= mb0*alpha;
+	Vu0 	= V0*alpha;
+	mbb0	= m0 - mu0;
+	Ub0	= E0 - Uu0;	
+	mbbb0	= mb0 - mub0;
+	Vb0 	= V0 - Vu0;
+	resetMix = true;
+	
+	Tu_prev = T0[icyl];
+	Tb_prev = Tu_prev;
+	Ru_prev = outarr_ThermoProp[1];
+	Rb_prev = Ru_prev;
+	uu_prev = outarr_ThermoProp[2];
+	ub_prev = uu_prev;
+	Cvu_prev = outarr_ThermoProp[15];
+	Cvb_prev = Cvu_prev;
+
+	mb0Mix = 0;
+	Ffs = FComb*fs;
+	
+	dmu = 0;
+	dUu = 0;
+	dmub = 0;
+	dVu = 0;
+	dmb = 0;
+	dUb = 0;
+	dmbb = 0;
+	dVb = 0;
+	
+equations
+	// Calculate the the mix rate
+	phi360 = phi[icyl]*180/pi mod 360;
+	if (phi360 > 180) then
+		phiComb = phi360 - 360;
+	else
+		phiComb = phi360;
+	end;
+	q = (phiComb - phi0Mix) / DPhiMix;
+	if (q < 0) then
+		q = 0;
+	else
+		if (q > 0) and resetMix then
+			mb0Mix = mb;
+			resetMix = false;
+		end;
+	   if (q > 1) then
+			q = 1;
+			if not resetMix then
+				resetMix = true;
+			end;
+   	end;
+	end;
+	dmMix = alpha*mb0Mix*6*q*(q-1)*omega*DPhiMix;
+
+	// Calculate the thermodynamic properties of the zones
+	inarr_ThermoProp1 = [p;Tu;Fu;fs];
+	outarr_ThermoProp1 = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);	
+	Ru = outarr_ThermoProp1[1];	uu = outarr_ThermoProp1[2];	su = outarr_ThermoProp1[3];
+	hu = outarr_ThermoProp1[4];	RFu = outarr_ThermoProp1[5];	RPu = outarr_ThermoProp1[6];
+	RTu = outarr_ThermoProp1[7];	uFu = outarr_ThermoProp1[8];	uPu = outarr_ThermoProp1[9];
+	uTu = outarr_ThermoProp1[10];	sFu = outarr_ThermoProp1[11];	sPu = outarr_ThermoProp1[12];
+	sTu = outarr_ThermoProp1[13];	Cpu = outarr_ThermoProp1[14];	Cvu = outarr_ThermoProp1[15];
+	Ku = outarr_ThermoProp1[16];	
+
+	inarr_ThermoProp2 = [p;Tb;Fb;fs];
+	outarr_ThermoProp2 = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);	
+	Rb = outarr_ThermoProp2[1];	ub = outarr_ThermoProp2[2];	sb = outarr_ThermoProp2[3];
+	hb = outarr_ThermoProp2[4];	RFb = outarr_ThermoProp2[5];	RPb = outarr_ThermoProp2[6];
+	RTb = outarr_ThermoProp2[7];	uFb = outarr_ThermoProp2[8];	uPb = outarr_ThermoProp2[9];
+	uTb = outarr_ThermoProp2[10];	sFb = outarr_ThermoProp2[11];	sPb = outarr_ThermoProp2[12];
+	sTb = outarr_ThermoProp2[13];	Cpb = outarr_ThermoProp2[14];	Cvb = outarr_ThermoProp2[15];
+	Kb = outarr_ThermoProp2[16];	
+	
+	detJu = RPu*(uTu*sFu-uFu*sTu)-RTu*(uPu*sFu-uFu*sPu)+RFu*(uPu*sTu-uTu*sPu);
+	detJb = RPb*(uTb*sFb-uFb*sTb)-RTb*(uPb*sFb-uFb*sPb)+RFb*(uPb*sTb-uTb*sPb);
+	Tuu 	= (RPu*sFu - RFu*sPu) / detJu;
+	Tub 	= (RPb*sFb - RFb*sPb) / detJb;
+	
+	// Calculate the flows 
+	a1 	= -(RTu*Tu+Ru)/(p*Ru*Tu)*Tuu;
+	a2 	= -(RTb*Tb+Rb)/(p*Rb*Tb)*Tub;
+	
+		// Calculate the enthalpy flow rate
+	dHu 	= pT.dH - (1/Ffs*hu + hn)*dmfb + dmMix*hb;
+	dHb 	= (1/Ffs*hu + hn)*dmfb - dmMix*hb;
+
+		// Calculate the cylinder heat transfer
+	dQu 	= pHT.dQ * Vu/(Vb + Vu);
+	dQb 	= pHT.dQ - dQu;
+
+	u1 	= -dQu + dHu; 
+	u2 	= pT.dH - pHT.dQ - p*ppV.f;
+	u3 	= (a1*Tuu*Uu*dmu/mu + dmu/p)/mu - (a2*Tub*Ub*dmb/mb + dmb/p)/mb;
+	u4 	= ppV.f;
+		
+	dmu 	= pp.f - (1+Ffs)/(Ffs)*dmfb + dmMix;
+	dUu 	= -(Vu - Vb)/(Vu*p*Vb)*u1 + a2*p*u2 - p*u3 + 1/Vb*u4;
+	dmub 	= pF.f - dmfb + dmMix*(Fb*fs/(1+Fb*fs));
+	dVu	= (-a1+a2)*u1 - (a2*u2) + u3 - 1/(Vb*p)*u4;
+	dmb 	= (1+Ffs)/Ffs*dmfb - dmMix;
+	dUb = (Vu - Vb)/(Vu*p*Vb)*u1 - 1/(Vu*p*Vb)*((Vu*Vb*a1*p*p) + Vu - Vb)*u2 + p*u3 - 1/Vb*u4;
+	dmbb = dmfb - dmMix*(Fb*fs/(1+Fb*fs));
+	dVb = (a1 - a2)*u1 + a2*u2 - u3 - (a1*p*p*Vu - a2*p*p * Vu - 1)/Vu/p*u4;
+
+	// State equations
+   mu		= int(dmu,mu0);
+	Uu 	= int(dUu,Uu0);
+	mub	= int(dmub,mub0);
+	Vu   	= int(dVu,Vu0);
+	mb		= int(dmb,mbb0);
+	Ub 	= int(dUb,Ub0);
+	mbb	= int(dmbb,mbbb0);
+	Vb   	= int(dVb,Vb0);
+
+	// Calculate the thermodynamic states p,T,F
+	inarr_th_MEV1 = [mu;Uu;mub;Vu;Tu_prev;Ru_prev;uu_prev;Cvu_prev;fs];
+	outarr_th_MEV1 = dll(dll_ICE,dll_fcn_th_MEV, inarr_th_MEV1);	
+	pu = outarr_th_MEV1[1];
+	Tu = outarr_th_MEV1[2];
+	Fu = outarr_th_MEV1[3];
+
+	inarr_th_MEV2 = [mb;Ub;mbb;Vb;Tb_prev;Rb_prev;ub_prev;Cvb_prev;fs];
+	outarr_th_MEV2 = dll(dll_ICE,dll_fcn_th_MEV, inarr_th_MEV2);	
+	pb = outarr_th_MEV2[1];
+	Tb = outarr_th_MEV2[2];
+	Fb = outarr_th_MEV2[3];
+	
+	errP = (pu - pb)/pu;
+	p = (pu + pb) / 2;
+
+	CR = Cyl_vol/Vc;
+		
+	pp.e = p;
+	pT.e = Tu;
+	pF.e = Fu;
+	ppV.e = p;
+	Cyl_vol = Vb + Vu;
+	pHT.T = p*(Cyl_vol) / (mu*Ru + mb*Rb);
+	m_air_cyl = mu + mb;
+
+	Tu_prev = Tu;
+	uu_prev = uu;
+	Ru_prev = Ru;
+	Cvu_prev = Cvu;
+	Tb_prev = Tb;
+	ub_prev = ub;
+	Rb_prev = Rb;
+	Cvb_prev = Cvb;		
+implementation_end;
+      ZeroJunction 424 312
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\ZeroJunction.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:45:16</TimeStamp>
+</Description>
+</Information>';
+       knot ZeroJunction
+        ports
+         pseudohydraulic knot duplicatable none p [1];
+         signal knot out effort [1];
+        restrictions
+         causality constraint one_in p;
+       end;
+       icon bg
+        figures
+         text '0' 424 312 18 bold;
+       end;
+       implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+implementation_end;
+      ZeroJunction1 448 336
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\ZeroJunction.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:45:16</TimeStamp>
+</Description>
+</Information>';
+       knot ZeroJunction
+        ports
+         pseudothermalh knot duplicatable none p [1];
+         signal knot out effort [1];
+        restrictions
+         causality constraint one_in p;
+       end;
+       icon bg
+        figures
+         text '0' 448 336 18 bold;
+       end;
+       implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+implementation_end;
+      ZeroJunction2 472 360
+       description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\ZeroJunction.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:45:16</TimeStamp>
+</Description>
+</Information>';
+       knot ZeroJunction
+        ports
+         power knot duplicatable none p [1];
+         signal knot out effort [1];
+        restrictions
+         causality constraint one_in p;
+       end;
+       icon bg
+        figures
+         text '0' 472 360 18 bold;
+       end;
+       implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+implementation_end;
+     end;
+     connections
+      CrankMechanism\q_rad -> Splitter9\input 'CA(rad)';
+      Splitter4\output -> Splitter13\input 728 608 'omega';
+      Thdyn_Cont_Vol_Eng_Cyl\ppV => CrankMechanism\p1;
+      PowerDemux\output2 => InValve\pT_in;
+      ExhValve\pp_out => PowerMux\input1;
+      ExhValve\pF_out => PowerMux\input3;
+      PowerDemux\output1 => EffortSensor1\p1;
+      ZeroJunction\p => Thdyn_Cont_Vol_Eng_Cyl\pp;
+      CrankMechanism\p2 => M;
+      PowerDemux\output3 => InValve\pF_in;
+      ZeroJunction2\p => ExhValve\pF_in;
+      ROHR1\pT => FlowSensor3\p1;
+      ZeroJunction\p => ExhValve\pp_in;
+      EffortSensor1\p2 => InValve\pp_in;
+      Thdyn_Cont_Vol_Eng_Cyl\pHT => FlowSensor1\p1;
+      in => PowerDemux\input;
+      InValve\pT_out => ZeroJunction1\p;
+      FlowSensor1\p2 => Submodel1\pQ;
+      PowerMux\output => out;
+      ZeroJunction2\p => Thdyn_Cont_Vol_Eng_Cyl\pF;
+      ExhValve\pT_out => PowerMux\input2;
+      FlowSensor3\p2 => ZeroJunction1\p;
+      ROHR1\pp => FlowSensor4\p1;
+      InValve\pp_out => QSensor1\p1;
+      QSensor1\p2 => ZeroJunction\p;
+      FlowSensor4\p2 => ZeroJunction\p;
+      ZeroJunction1\p => Thdyn_Cont_Vol_Eng_Cyl\pT;
+      InValve\pF_out => ZeroJunction2\p;
+      ZeroJunction1\p => ExhValve\pT_in;
+      ROHR1\pF => ZeroJunction2\p;
+      EffortSensor1\effort -> CrankMechanism\p_scvg 256 280 128 280 128 560;
+      Demux\output6 -> InValve\AR 408 104;
+      ZeroJunction\effort -> Splitter10\input 392 328 392 384;
+      Splitter8\output -> ROHR1\pfi;
+      Splitter13\output -> ROHR1\omega 728 192 480 192;
+      InValve\open -> ExhValve\inport_open 344 168 536 168 552 280;
+      ROHR1\Comb_state -> ExhValve\Comb_state;
+      CrankMechanism\P -> MSf\flow 552 512;
+      Thdyn_Cont_Vol_Eng_Cyl\Cyl_vol -> Splitter11\input;
+      Splitter7\output -> ExhVVLift\CA;
+      Splitter13\output -> Thdyn_Cont_Vol_Eng_Cyl\omega;
+      Demux\output2 -> ExhVVLift\CA_start_nom 568 112;
+      Demux\output3 -> ExhValve\AR 544 120;
+      Splitter4\output -> Splitter6\input;
+      Demux\output1 -> ExhVVLift\dCA_lift_nom 592 104;
+      Splitter6\output -> Submodel1\omega 320 608;
+      FlowSensor3\flow -> Thdyn_Cont_Vol_Eng_Cyl\dmfb 488 288 488 432;
+      Demux\output4 -> ROHR1\fiinj 464 112;
+      Splitter10\output -> Submodel1\Pcyl 320 384;
+      CrankMechanism\flow -> Splitter3\input;
+      Splitter9\output -> Splitter15\input 680 536;
+      ExhValve\open -> exh_open;
+      Splitter9\output -> MSf\phi_rad 576 504;
+      ExhVVLift\lift -> ExhValve\lift 608 272 568 272;
+      Splitter15\output -> Splitter7\input 680 160;
+      FlowSensor1\flow -> Splitter12\input 400 264;
+      Splitter15\output -> Thdyn_Cont_Vol_Eng_Cyl\phi;
+      Splitter7\output -> Splitter8\input;
+      Splitter3\output -> Splitter4\input;
+      Mux\output -> output1;
+      input -> Demux\input;
+      Splitter10\output -> p_cyl;
+      InValve\beta -> ExhValve\purity 344 176 536 176 544 280;
+      Splitter11\output -> Submodel1\Vol;
+      Splitter12\output -> Mux\input2;
+      Demux1\output1 -> p_max;
+      Demux\output5 -> ROHR1\x_lev 424 112;
+      QSensor1\q -> InValve\m_in 368 288 344 288;
+      Submodel1\T_w_phys -> T_w_phys;
+      Demux1\input <- ROHR1\p_max;
+      Splitter11\output -> V_cyl;
+      FlowSensor4\flow -> Mux\input1;
+      Splitter8\output -> InValve\pfi 304 160;
+     end;
+    implementation_end;
+   GlobalParameters 80 64
+    description '<Description>
+ <Version>4.0</Version>
+ <LibraryPath>Template\Submodel-Equation.emx</LibraryPath>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <TimeStamp>2007-11-1 22:32:1</TimeStamp>
+ <AllowLibraryUpdate>False</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+    type 'Submodel-Equation'
+    end;
+    icon bg
+     figures
+      rectangle 23.2 43.6 136.8 84.4 fill 13688896;
+      text 'name' 80 65 fill 13688896 16;
+    end;
+    implementation eq
+parameters
+// Engine characteristics, fuel 	
+	real global nstroke = 2;	//number of stroke of the engine
+	integer global ncyl = 8;   //Number of cylinders
+	real global pfi0[ncyl] = [0.1;45.1;90.1;135.1;180.1;225.1;270.1;325.1];		//Initial crank angle of cylinders
+	real global RPM_max = 95;
+
+// Engine dimension	
+	real global slag = 2.72;	//Length of stroke
+	real global alam = 0.5056; //Ratio of crank rod to conneting rod
+	real global Diam = 0.68;	//Bore size
+	real global Veps = 19.2; 	//Compression ratio
+	
+// Combustion 
+	real global hn = 42707000;  //LHV of the fuel
+//	real global fiinj = 0;	 //Start of injection of fuel
+	real global FC[4] = [1;1.816;0;0];
+	real global pemax = 2140000; //Maximum brake mean effective pressure
+	real global ommax = 9.95;  //Maximum speed of the engine
+	real global T_L = 1500;					//Lower limit of temp. range for transition from complete combustion to dissociation
+	real global T_H = 1700;					//Higher limit of temp. range for transition from complete combustion to dissociation
+	real global fs = 0.0683;		//Stoichiometric fuel-air ratio
+
+// Intake port
+	real global N_p = 28;				//No of ports
+	real global Y = 0.16;				//Height of the ports
+	real global X = 0.07;				//Width of the ports
+
+// Parameters for purity calculation
+	real global kai = 1.7; //Shape factor for 'S-type' curve;
+	real global delta = 2; //Shape factor for 'S-type' curve;
+
+// Exhaust valve
+	real global lift_max = 0.17;
+	real hidden global CA_start_ref = 104.8; //Reference start CA for start of valve lift
+	real hidden global  dCA_lift_up = 37.7;	 //Lift up time (should not be changed unless file is changed
+	real hidden global dCA_lift_down = 52.1; //Lift down time (should not be changed unless file is changed
+	real hidden global dCA_lift_top_ref = 63.5; //Reference duration for lift up
+
+	// Valve dimension
+	real global Dv = 0.425; // Valve head diameter
+	real global beta = 0.75; // Seat angle
+	real global w = 0.021; // Valve seat width
+	real global Dp = 0.383; // Inner seat diameter
+	real global Ds = 0.079; // Stem diameter  
+	// Parameters for curve fit for Cd correlation
+   real global p1 = 0.5329;   	real global p2 = -0.2047;
+   real global p3 = 0.04292;		real global q1 = 0.5359;
+	real global q2 = -0.2962;		real global q3 = 0.06275;
+	real global Cd_corr_coeff[3] = [-0.006345;0.09503;0.8117];
+	// The fit model was taken from the Sher, E. (1990). Scavenging 
+	// the two-stroke engine. Progress in Energy and Combustion Science, 
+	// 16(2), 95-124. 		
+
+// Turbine
+	real global flow_coeff_turb[3] = [
+			-1.585326540339;
+			-4.823836967181;
+			1.5853156139822];			
+	real global eff_coeff[6] = [
+			-1.0889528323728;
+			0.91854258409396;
+			-0.10659748546926;
+			0.21229452390244;
+			-0.053186221596493;
+			-0.005451194709834];
+	real global Jturb = 2;
+
+// Blower
+	real global eta_blower = 0.8;
+	real global coeff_blower_flow[3] = [
+			-193.24048255339;
+			4.1357602501571;
+			0.65950308947414];
+
+	
+// Scavenge Air Cooling
+	real global Cd = 0.8;									//Discharge coefficient of the charge air cooler
+	real global A_air_path = 0.262681982928477;		//Effective area of air passage
+	real global dm_cw = 46.944444444444;			//mass flow of coolant
+	real global coeff_T_cw_K[2] = [1.30322634194411;-156.656919311284]; //HT coefficient correction factor WRT T_cw
+	real global Cp_cw = 4185.5; 							//Heat capacity of coolant
+	real global D_cw_pipe = 0.008;							//Diameter of the tube in the cooler
+	
+// Thermal loss in cylinder
+	real global T_Top = 700;	//Temperature of the cylinder head	
+	real global T_Liner = 700;	//Temperature of the cylinder wall
+	real global T_Pist = 700;	//Temperature of the piston top
+	real global mCp = 10000;
+	real global T_w_init = 600;
+	real global C_cylHT[4] = [0.000530400685977076;-1.14931472294745;831.645252938598;-197989.604322552];	
+// Pressure drop 
+//	real global dm_exh_max = 52.750266666667;	
+//	real global dm_air_max = 51.54;
+
+// Thermo package
+	string global dll_ICE = 'DLL_ICElib.dll';
+
+// initial conditions
+	real global p0[8] = [10920275.666137;1192580.0340861;315597.47970568;263000;263000;263000;316717.3365704;1203306.4880679];
+	real global T0[8] = [880.22832180914;467.53136066293;319.78085507511;303.55;303.55;303.55;320.10464534987;468.72898656505];
+	real global F0[8] = [0;0;0;0;0;0;0;0]; 
+
+// Performance data
+	real global PL[13] = [1.1;1.0;0.9;0.85;0.8;0.75;0.7;0.65;0.6;0.5;0.4;0.3;0.25];
+	real global mqf_max = 0.095547368421053;
+implementation_end;
+   OneJunction1 328 464
+    description '<Description><Version>4.0</Version><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Bond Graph\OneJunction.emx</LibraryPath>
+  <TimeStamp>2007-9-27 9:51:18</TimeStamp>
+</Description>';
+    knot OneJunction
+     ports
+      rotation knot duplicatable none p [1];
+      signal knot out flow [1];
+     restrictions
+      causality constraint one_out p;
+    end;
+    icon bg
+     figures
+      text '1' 328 464 18 bold;
+    end;
+    implementation eq
+equations
+	sum (direct (p.e)) = 0;
+	equal (collect (p.f));
+	flow = first (p.f);
+    implementation_end;
+   Se_amb 200 368
+    description '<Description>
+ <LibraryPath>Engine\AmbientCondition.emx</LibraryPath>
+ <TimeStamp>2014-9-19 22:25:52</TimeStamp>
+ <Version>4.4</Version>
+ <IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+   <Configuration><struct>
+  <member>
+    <name>DocumentationMask</name>
+    <value>
+      <struct>
+        <member>
+          <name>MaskChoice</name>
+          <value>
+            <int>1</int>
+          </value>
+        </member>
+        <member>
+          <name>BitmapFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>ScriptFilename</name>
+          <value>
+            <string></string>
+          </value>
+        </member>
+        <member>
+          <name>Scaling</name>
+          <value>
+            <double>1</double>
+          </value>
+        </member>
+      </struct>
+    </value>
+  </member>
+</struct>
+</Configuration>
+</Description>';
+    type Se
+     ports
+      power out p [3,1];
+     restrictions
+      causality fixed out p;
+    end;
+    icon bg bottom
+     figures
+      text 'Se' 200 368 18 bold;
+    end;
+    implementation eq
+parameters
+	real effort[3] = [4e5;300;0.0];
+variables
+	real flow[3];	
+equations
+//	p_drop = 0.02942e5*(flow[1]/m_exh_max)^2;
+	p.e = effort;
+	flow = p.f;
+implementation_end;
+   Se_back_exh1 336 136
+    description '<Information>
+ <Description>
+    <LibraryPath>Engine\AmbientCondition.emx</LibraryPath>
+  <TimeStamp>2014-9-19 22:25:52</TimeStamp>
+  <Version>4.4</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+  <AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct>
+       <member>
+        <name>MaskChoice</name>
+        <value>
+         <int>1</int>
+        </value>
+       </member>
+       <member>
+        <name>BitmapFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>ScriptFilename</name>
+        <value>
+         <string></string>
+        </value>
+       </member>
+       <member>
+        <name>Scaling</name>
+        <value>
+         <double>1</double>
+        </value>
+       </member>
+      </struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>';
+    type Se
+     ports
+      power in p [3,1];
+     restrictions
+      causality fixed out p;
+    end;
+    icon bg bottom
+     figures
+      text 'Se' 336 136 18 bold;
+    end;
+    implementation eq
+parameters
+	real effort[3] = [2.5e5;700;0.3];
+variables
+	real flow[3];	
+equations
+//	p_drop = 0.02942e5*(flow[1]/m_exh_max)^2;
+	p.e = effort;
+	flow = p.f;
+implementation_end;
+   Sf 328 512
+    description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\Sf.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:38:03</TimeStamp>
+</Description>
+</Information>';
+    type Sf
+     ports
+      power out p;
+     restrictions
+      causality fixed in p;
+    end;
+    icon bg bottom
+     figures
+      text 'Sf' 328 512 18 bold;
+    end;
+    implementation eq
+parameters
+	real flow = 95;
+variables
+	real effort;
+equations
+	p.f = flow*pi/30;
+	effort = p.e;
+implementation_end;
+  end;
+  connections
+   Se_amb\p => Eng_Cyl1\in;
+   Eng_Cyl1\out => Se_back_exh1\p;
+   Eng_Cyl1\M => OneJunction1\p;
+   OneJunction1\p <= Sf\p;
+   EngineControlSystem\output -> Eng_Cyl1\input;
+  end;
+ implementation_end;
+]]>
+</Sidops>
+ </Model>
+ <Experiments>
+     <DefaultExperiment><![CDATA[Experiment 1]]>
+</DefaultExperiment>
+  <Experiment>
+    <Name>Experiment 1</Name>
+    <CreatedBy></CreatedBy>
+    <Info></Info>
+<ExpData>
+  <VersionNumber>4.4</VersionNumber>
+  <ModelProperties>
+  </ModelProperties>
+  <Variables>
+   <Constants>
+   </Constants>
+   <Parameters>
+    <Variable>
+     <Name>alpha</Name>
+     <Description><![CDATA[Ratio of mass of burned zone and unburend zone after mixing]]>
+</Description>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>CASE</Name>
+     <Description><![CDATA[Fuel composition [C H O N]]]>
+</Description>
+     <ArithmeticType>integer</ArithmeticType>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>DPhiMix</Name>
+     <Description><![CDATA[Duration of mixing of a burned zone and an unburned [deg]]]>
+</Description>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>FComb</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>phi0Mix</Name>
+     <Description><![CDATA[Start of mixing of a burned zone and an unburned [deg]]]>
+</Description>
+     <Value>0</Value>
+    </Variable>
+   </Parameters>
+   <Initials>
+    <Variable>
+     <Name>Eng_Cyl1\CrankMechanism\QSensor4\q0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\MSf\Yint_initial</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\QSensor1\q_initial</Name>
+     <Unit>kg</Unit>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>E_init</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\mbb0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\mbbb0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\mu0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\mub0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\Ub0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\Uu0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\Vb0</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>Eng_Cyl1\Thdyn_Cont_Vol_Eng_Cyl\Vu0</Name>
+     <Value>0</Value>
+    </Variable>
+   </Initials>
+  </Variables>
+  <PlotSpecs>
+   <VarNames>
+    <VarName>time</VarName>
+   </VarNames>
+   <Plots>
+    <Plot>
+     <PlotType>GraphPlot</PlotType>
+     <BasePlot>
+       <PlotId>1</PlotId>
+       <UseWindowsBGColor>true</UseWindowsBGColor>
+       <BGColor>15790320</BGColor>
+       <PlotIsVisible>true</PlotIsVisible>
+     </BasePlot>
+     <Grid>
+      <DrawGrid>true</DrawGrid>
+      <GridColor>15780518</GridColor>
+      <XTicks>10</XTicks>
+      <YTicks>10</YTicks>
+      <ZTicks>10</ZTicks>
+      <Use3DLook>false</Use3DLook>
+     </Grid>
+     <PlotBGColor>16777215</PlotBGColor>
+     <ShowPlotTitle>true</ShowPlotTitle>
+     <TitlePosition>1</TitlePosition>
+     <PlotTitle>model</PlotTitle>
+     <ShowXValues>true</ShowXValues>
+     <Fonts>
+      <TitleFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </TitleFont>
+      <LabelFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </LabelFont>
+      <ValuesFont>
+       <Name>Arial</Name>
+       <Height>10</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </ValuesFont>
+     </Fonts>
+     <SharedXAxis>true</SharedXAxis>
+     <SharedYAxis>true</SharedYAxis>
+     <SharedZAxis>false</SharedZAxis>
+     <XAxes>
+      <Axis>
+       <Minimum>0</Minimum>
+       <Maximum>10</Maximum>
+       <Linear>true</Linear>
+       <Scaling>3</Scaling>
+       <Label>time</Label>
+      </Axis>
+     </XAxes>
+     <YAxes>
+      <Axis>
+       <Minimum>0</Minimum>
+       <Maximum>10</Maximum>
+       <Linear>true</Linear>
+       <Scaling>1</Scaling>
+       <Label></Label>
+      </Axis>
+     </YAxes>
+     <ZAxes>
+     </ZAxes>
+     <Curves>
+      <Curve>
+       <LineColor>16711680</LineColor>
+       <LineStyle>1</LineStyle>
+       <TickColor>16711680</TickColor>
+       <TickStyle>0</TickStyle>
+       <CurveVisible>true</CurveVisible>
+       <PixelThresshold>1</PixelThresshold>
+       <LineThickness>1</LineThickness>
+       <LineOrder>1</LineOrder>
+       <ShowYValues>true</ShowYValues>
+       <XCurveData>
+        <ShowUnit>true</ShowUnit>
+        <VarName>time</VarName>
+       </XCurveData>
+      </Curve>
+     </Curves>
+     <Legenda>
+      <ShowLegenda>true</ShowLegenda>
+     </Legenda>
+    </Plot>
+   </Plots>
+   <PlotPanels>
+    <PlotPanel>
+     <PlotPanelId>1</PlotPanelId>
+     <PlotPanelVisible>true</PlotPanelVisible>
+     <Name>Window 1</Name>
+     <Tiling>0</Tiling>
+     <PlotIds>
+       <PlotId>1</PlotId>
+     </PlotIds>
+     <ToggleState>Base</ToggleState>
+    </PlotPanel>
+   </PlotPanels>
+  </PlotSpecs>
+  <RunSpecs>
+   <SimulatorSettings>
+    <StartTime>0</StartTime>
+    <FinishTime>10</FinishTime>
+    <Warp>false</Warp>
+    <UseOutputAfterEach>false</UseOutputAfterEach>
+    <OutputAfterEach>0.1</OutputAfterEach>
+    <EventEpsilon>1e-006</EventEpsilon>
+    <AlgebraicTolerance>1e-007</AlgebraicTolerance>
+    <SteadyStateAnalysis>false</SteadyStateAnalysis>
+    <UpdateHoldInstructions>true</UpdateHoldInstructions>
+   </SimulatorSettings>
+   <IntegrationMethods>
+    <IntegrationMethod>
+     <Name>Euler</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BackwardEuler</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <StepSize>0.01</StepSize>
+     <Alpha>1</Alpha>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>AdamsBashforth</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta2</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta4</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta8</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <SafetyFactor>0.9</SafetyFactor>
+     <Factor1>0.33</Factor1>
+     <Factor2>6</Factor2>
+     <Beta>0</Beta>
+     <UseMaxNrSteps>false</UseMaxNrSteps>
+     <MaxNrSteps>100000</MaxNrSteps>
+     <UseStiffDetection>false</UseStiffDetection>
+     <MaxNrStiffnessSteps>1000</MaxNrStiffnessSteps>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKuttaFehlberg</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>VodeAdams</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <VodeUseBDF>true</VodeUseBDF>
+     <VodeUseNewton>true</VodeUseNewton>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BDFMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>MeBDFiMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <SelectedIntegrationMethod>8</SelectedIntegrationMethod>
+   </IntegrationMethods>
+  </RunSpecs>
+  <MultipleRun>
+   <NrSteps>10</NrSteps>
+   <CopyFromStates>false</CopyFromStates>
+   <JoinParameterVariation>true</JoinParameterVariation>
+   <ClearAfterRun>true</ClearAfterRun>
+   <RedrawAfterRun>false</RedrawAfterRun>
+   <DrawDuringSimulation>true</DrawDuringSimulation>
+   <ActionBeforeOptimization>0</ActionBeforeOptimization>
+   <CompareValue>0</CompareValue>
+   <UseCompareValue>true</UseCompareValue>
+   <MultipleRunType>MultipleRun</MultipleRunType>
+   <Minimize>true</Minimize>
+   <OptimizationVariable></OptimizationVariable>
+   <ResulVarUsage>UseEndValue</ResulVarUsage>
+   <Tolerance>0.001</Tolerance>
+   <OptimizationMethod>BroydonFletcherGoldfarbShanno</OptimizationMethod>
+   <MultipleRunVariables>
+   </MultipleRunVariables>
+  </MultipleRun>
+  <ExportData>
+   <WriteAsText>true</WriteAsText>
+   <ReadAsText>true</ReadAsText>
+   <WriteHeader>true</WriteHeader>
+   <ReadHeader>true</ReadHeader>
+   <ReadFilename></ReadFilename>
+   <WriteFilename></WriteFilename>
+   <DoWrite>false</DoWrite>
+   <ExportVariables>
+   </ExportVariables>
+   <ImportVariables>
+   </ImportVariables>
+  </ExportData>
+  <BreakPoints>
+  </BreakPoints>
+</ExpData>
+  </Experiment>
+</Experiments>
+</Document>
