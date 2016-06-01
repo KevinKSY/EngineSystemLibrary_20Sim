@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+  <Model version="4.6" build="4.6.0.6684">
+    <Sidops>
+<![CDATA[GlobalParameters 64 32 description '<Information>
+ <Description>
+    <Version>4.6</Version>
+  <LibraryPath>Parameters\GlobalParameters.emx</LibraryPath>
+  <TimeStamp>2016-4-4 16:10:34</TimeStamp>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+  <AllowLibraryUpdate>True</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>'; type Submodel end; implementation eqparameters	string global dllToolbox = 'C:\Users\yum\Documents\GitHub\20SimToolBox\dll20SimToolVS10\Release\dll20SimToolVS10';	string global fnc_interp = 'interpolate';// Thermo package	string global dll_ICE = 'C:\Users\yum\Documents\GitHub\ThdynCalcPackDLL\DllICELib\Release\DLL_ICElib.dll';	string global dll_fcn_GetTFromPhF = 'getTFromPhF';		string global dll_fcn_ThDP = 'getThdynCombGas';   // subroutines names in the dll file	string global dll_fcn_th_MEV = 'getPTF'; // subroutines names in the dll file	string global dll_fcn_idealNozzle = 'getFlowIdealNozzle';	string global dll_fcn_comp = 'ice_comres';	string global dll_fcn_HTX = 'getHTCoeffHTX';	integer global nStroke = 4;	real global fs = 0.0683;implementation_end;]]>
+    </Sidops>
+  </Model>
+</Document>

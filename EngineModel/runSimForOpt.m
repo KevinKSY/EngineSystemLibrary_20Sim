@@ -1,0 +1,13 @@
+function J = runSimForOpt(x)
+    logVariables = {'time' ,...
+        'DieselEngine2Stroke.EngineControl.BSFC_calc.output',...
+        'DieselEngine2Stroke.EngineControl.pMax',...
+        'DieselEngine2Stroke.EngineControl.costFunction.J',...
+    };
+    xxsimSetLogVariables(logVariables);
+    xxsimSetParameters('DieselEngine2Stroke.EngineControl.EngineControl.phiInjNom', x(1));
+    xxsimSetParameters('DieselEngine2Stroke.EngineControl.EngineControl.EVONom', x(2));
+    xxsimSetParameters('DieselEngine2Stroke.EngineControl.EngineControl.EVCNom', x(3));
+    xxsimRun();
+    [values, names] = xxsimGetLogValues(logVariables);
+    J = values(end,4);

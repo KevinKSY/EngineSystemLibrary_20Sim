@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="4.6" build="4.6.0.6684">
+  <Sidops><![CDATA[model 128 184
+ description '<Information>
+ <Description>
+    <Version>4.6</Version>
+<IsMainModel>0</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Components\MVEM.emx</LibraryPath>
+  <TimeStamp>2016-4-7 23:26:03</TimeStamp>
+</Description>
+</Information>';
+ type Mainmodel
+ end;
+ implementation bg
+  submodels
+   MVEM 296 232
+    description '<Information><Description><Version>4.0</Version><LibraryPath>C:\Program Files\20-sim 4.0\System\Submodel.emx</LibraryPath><TimeStamp>2007-10-31 11:32:54</TimeStamp><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><AllowLibraryUpdate>True</AllowLibraryUpdate><Configuration><struct><member><name>DocumentationMask</name><value><struct></struct></value></member></struct></Configuration></Description></Information>';
+    type Submodel
+     ports
+      power in ppIn;
+      power in pTIn;
+      power in pFIn;
+      power out ppOut;
+      power out pTOut;
+      power out pFOut;
+      power out pM;
+      signal in throttle;
+      signal in volEff;
+     restrictions
+      causality fixed out pM;
+      causality fixed in ppIn;
+      causality fixed in pTIn;
+      causality fixed in pFIn;
+      causality fixed in ppOut;
+      causality fixed in pTOut;
+      causality fixed in pFOut;
+    end;
+    implementation eq
+parameters
+	string global dll_ICE;
+	string global dll_fcn_ThDP;
+	real fs;
+	real hn;
+	integer nStroke;
+	real mfqCycMax;
+	real HTRatio;
+	real Pe0;
+	real vDisp;
+	real PeNom;
+	real SFCCoeff[3];
+	real T_pe;
+variables
+	real pu, Tu, Fu;
+
+	real hidden inarr_ThermoProp[5], outarr_ThermoProp[16];	
+
+	real hidden p_bar;       // pressure in bar
+	real m_cyc;       // mass of charge trapped per cycle
+	real n;           // number of revolution per second
+	real dmf;         // fuel burn rate (kg/s)
+	real Pe, Pe_d_nom;   // inst shaft power (W), delayed shaft power(W) 
+	real SFOC;        // Specific fuel oil consumption (g/kWh)
+	real Ru, hu;
+	real Pe_Prev;
+initialequations
+	Pe_Prev = PeNom;	
+//code
+code
+	pu = ppIn.e;
+	Tu = pTIn.e;
+	Fu = pFIn.e;
+	inarr_ThermoProp = [pu;Tu;Fu;fs;1];
+	outarr_ThermoProp = dll(dll_ICE,dll_fcn_ThDP, inarr_ThermoProp);	
+	Ru = outarr_ThermoProp[1];
+	hu = outarr_ThermoProp[2];
+
+	m_cyc = volEff*(vDisp)*(pu/(Ru*(Tu)));
+	n = pM.f/(pi*(nStroke));
+	ppIn.f = m_cyc*n;
+	pTIn.f = ppIn.f*hu;
+	pFIn.f = ppIn.f*(Fu*(fs))/(1 + Fu*(fs));
+	dmf = (throttle)*(mfqCycMax)*n;
+	Pe_d_nom = Pe_Prev / PeNom;
+	SFOC = Pe_d_nom*(SFCCoeff[1]*Pe_d_nom + SFCCoeff[2]) + SFCCoeff[3];
+	Pe = 3.9e9*dmf/SFOC;
+	ppOut.f = ppIn.f + dmf;
+	pTOut.f = pTIn.f + hn*(1-HTRatio)*dmf - Pe;
+	pFOut.f = pFIn.f + dmf;
+	pM.e = Pe / pM.f;
+	Pe_Prev = Pe;
+	
+implementation_end;
+   volEff 296 288
+			specifications active 'Kocher_Phenom'
+				specification 'Correlate_Pressure'
+ description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate><Configuration><struct><member><name>DocumentationMask</name><value><struct></struct></value></member></struct></Configuration></Description></Information>';
+ type 'Submodel-Equation'
+  ports
+   signal in P_im;
+   signal out volEff;
+ end;
+ icon bg
+  figures
+   rectangle 271.2 145 320.8 175 color 0 fill 15132390;
+   text 'name' 296 160 color 0 16;
+ end;
+ implementation eq
+/* 
+Quadratic relation with two curves
+
+Created by Kevin Koosup Yum (NTNU)
+Date 7 April 2016
+*/
+parameters
+	real volEffCoeff1[3];
+	real volEffCoeff2[3];
+	real p_a_inf = 2;
+
+variables
+	real p_bar;
+	
+code
+	p_bar = P_im/1.0e5;
+	if p_bar > p_a_inf then
+		volEff = p_bar*(p_bar*volEffCoeff1[1] + volEffCoeff1[2]) 
+            + volEffCoeff1[3];
+	else
+		volEff = p_bar*(p_bar*volEffCoeff2[1] + volEffCoeff2[2]) 
+            + volEffCoeff2[3];
+	end;implementation_end;
+specification_end;
+				specification 'Kocher_Phenom'
+ description '<Information><Description><Version>4.0</Version><LibraryPath>Template\Submodel-Equation.emx</LibraryPath><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><TimeStamp>2007-11-1 22:32:1</TimeStamp><AllowLibraryUpdate>False</AllowLibraryUpdate><Configuration><struct><member><name>DocumentationMask</name><value><struct></struct></value></member></struct></Configuration></Description></Information>';
+ type 'Submodel-Equation'
+  ports
+   signal in pTFIn [3,1];
+   signal out volEff;
+   signal in pTFEx [3,1];
+   signal in omega;
+   signal in TWall;
+ end;
+ icon bg
+  figures
+   rectangle 271.2 273 320.8 303 color 0 fill 15132390;
+   text 'name' 296 288 color 0 16;
+ end;
+ implementation eq
+/* 
+volumetric efficiency model for internal combustion engines 
+from the work of Kocher et al.
+Kocher, L., Koeberlein, E., Van Alstine, D. G., Stricker, 
+K., & Shaver, G. (2012). Physically based volumetric 
+efficiency model for diesel engines utilizing variable 
+intake valve actuation. International Journal of Engine 
+Research, 13(2), 169–184. http://doi.org/10.1177/1468087411424378
+
+Created by Kevin Koosup Yum (NTNU)
+Date 7 April 2016
+*/
+parameters
+	string global dll_ICE;           //dll file name
+	string global dll_fcn_ThDP;			//function name in dll file
+		
+	real global B, S; 	// Bore size and stroke length
+	real global vDisp; //displacement volume
+	real global CR;		// compression ratio
+	real global lambdaR;	// connecting rod to crank rod ratio
+	real global fs;  // stoichiometric fuel air ratio
+
+	real phiIVO = 343;
+	real phiIVC = 585;
+	real phiEVO = 130;
+	real phiEVC = 376;
+	real CReff = 16;				//effective compression ratio
+	real SA_IVO_IVC = 0;		//Cylinder surface area x time
+
+variables
+	real E_IVC; // Cylinder gas energy at IVC
+	real E_r;	// Residual exhaust gas energy in cylinder at IVO
+	real E_b; // Back-flow exhaust gas energy from exhaust manifold to cylinder, IVO to exhaust valve closing
+	real E_p; //Piston work energy done by cylinder gas, IVO to IVC
+	real E_q; // Heat transfer energy to cylinder gas, TDC to IVC
+	real P_im, T_im, F_im; // intake manifold pressure, temperature and fuel-air equivalent ratio
+	real P_em, T_em, F_em; // exhaust manifold pressure, temperature and fuel-air equivalent ratio
+	real v_IVCeff; //effective volume of the cylinder at IVC 
+	real v_IVC; //cylinder volume at IVC
+	real v_IVO; //cylinder volume at IVO
+	real v_EVC; //cylinder volume at EVC
+	real vComp, aPist;
+	real l; //length of connecting rod
+	real hHT;	//Heat transfer coefficient
+	real hidden inArr[5];
+	real hidden outArr[16];
+	real R, Cv, Cp; 	//Gas constant, specific heat capacity for constant volume, 
+								//	specific heat capacity for contant pressure
+	real k;					//polytropic exponent for compression								
+	
+initialequations
+	aPist = B^2/4*pi;
+	vComp = vDisp/(CR-1);
+	v_IVCeff = vComp*CReff;
+	l = S/(2*lambdaR);
+	v_IVC = vComp + aPist*(S/2 + l - (S/2*cos(phiIVC/180*pi) + sqrt(l^2 - (S/2*sin(phiIVC/180*pi)).^2)));
+	v_IVO = vComp + aPist*(S/2 + l - (S/2*cos(phiIVO/180*pi) + sqrt(l^2 - (S/2*sin(phiIVO/180*pi)).^2)));
+	v_EVC = vComp + aPist*(S/2 + l - (S/2*cos(phiEVC/180*pi) + sqrt(l^2 - (S/2*sin(phiEVC/180*pi)).^2)));
+//	v_EVO = vComp + aPist*(S/2 + l - (S/2*cos(phiEVO/180*pi) + sqrt(l^2 - (S/2*sin(phiEVO/180*pi)).^2)));
+code
+  // start typing here
+	P_im = pTFIn[1];		P_em = pTFEx[1];
+	T_im = pTFIn[2];		T_em = pTFEx[2];
+	F_im = pTFIn[3];		F_em = pTFEx[3];
+
+	inArr = [P_em;T_em;F_em;fs;1];	
+	outArr = dll(dll_ICE,dll_fcn_ThDP, inArr);		
+	R = outArr[1];
+	Cp = outArr[14];
+	Cv = outArr[15];	
+	k = outArr[16];	
+	E_r = P_em*(v_EVC/v_IVO)^k*v_IVO*Cv/R;
+	E_b = P_em*(v_EVC - v_IVO)*Cp/R;
+		
+	inArr = [P_im;T_im;F_im;fs;1];	
+	outArr = dll(dll_ICE,dll_fcn_ThDP, inArr);		
+	R = outArr[1];
+	Cp = outArr[14];
+	Cv = outArr[15];
+	k = outArr[16];
+	E_IVC = P_im*(v_IVCeff/v_IVC)^k*v_IVC*Cv/R;
+	E_p = P_im*(v_IVCeff - v_IVO);
+	hHT = 3.26*B^-0.2*P_im^0.8*T_im^-0.55*(6.18*2*S*omega/(2*pi))^0.8;  //Woschni
+	E_q = hHT*(TWall - T_im)*SA_IVO_IVC;
+
+	
+	volEff = (E_IVC - E_r - E_b + E_p - E_q) / (P_im*vDisp*Cp);implementation_end;
+specification_end;
+			end;
+  end;
+  connections
+   volEff\volEff -> MVEM\volEff;
+  end;
+ implementation_end;
+]]>
+</Sidops>
+ </Model>
+ <Experiments>
+     <DefaultExperiment><![CDATA[Experiment 1]]>
+</DefaultExperiment>
+  <Experiment>
+    <Name>Experiment 1</Name>
+    <CreatedBy></CreatedBy>
+    <Info></Info>
+<ExpData>
+  <VersionNumber>4.6</VersionNumber>
+  <ModelProperties>
+  </ModelProperties>
+  <Variables>
+  </Variables>
+  <PlotSpecs>
+   <VarNames>
+    <VarName>time</VarName>
+   </VarNames>
+   <Plots>
+    <Plot>
+     <PlotType>GraphPlot</PlotType>
+     <BasePlot>
+       <PlotId>1</PlotId>
+       <UseWindowsBGColor>true</UseWindowsBGColor>
+       <BGColor>15790320</BGColor>
+       <PlotIsVisible>true</PlotIsVisible>
+     </BasePlot>
+     <Grid>
+      <DrawGrid>true</DrawGrid>
+      <GridColor>15780518</GridColor>
+      <XTicks>10</XTicks>
+      <YTicks>10</YTicks>
+      <ZTicks>10</ZTicks>
+      <Use3DLook>false</Use3DLook>
+     </Grid>
+     <PlotBGColor>16777215</PlotBGColor>
+     <ShowPlotTitle>true</ShowPlotTitle>
+     <TitlePosition>1</TitlePosition>
+     <PlotTitle>model</PlotTitle>
+     <ShowXValues>true</ShowXValues>
+     <Fonts>
+      <TitleFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </TitleFont>
+      <LabelFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </LabelFont>
+      <ValuesFont>
+       <Name>Arial</Name>
+       <Height>10</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </ValuesFont>
+     </Fonts>
+     <SharedXAxis>true</SharedXAxis>
+     <SharedYAxis>true</SharedYAxis>
+     <SharedZAxis>false</SharedZAxis>
+     <XAxes>
+      <Axis>
+       <Minimum>0</Minimum>
+       <Maximum>10</Maximum>
+       <Linear>true</Linear>
+       <Scaling>3</Scaling>
+       <Label>time</Label>
+      </Axis>
+     </XAxes>
+     <YAxes>
+      <Axis>
+       <Minimum>-6</Minimum>
+       <Maximum>14</Maximum>
+       <Linear>true</Linear>
+       <Scaling>1</Scaling>
+       <Label></Label>
+      </Axis>
+     </YAxes>
+     <ZAxes>
+     </ZAxes>
+     <Curves>
+      <Curve>
+       <LineColor>16711680</LineColor>
+       <LineStyle>1</LineStyle>
+       <TickColor>16711680</TickColor>
+       <TickStyle>0</TickStyle>
+       <CurveVisible>true</CurveVisible>
+       <PixelThresshold>1</PixelThresshold>
+       <LineThickness>1</LineThickness>
+       <LineOrder>1</LineOrder>
+       <ShowYValues>true</ShowYValues>
+       <XCurveData>
+        <ShowUnit>true</ShowUnit>
+        <VarName>time</VarName>
+       </XCurveData>
+      </Curve>
+     </Curves>
+     <Legenda>
+      <ShowLegenda>true</ShowLegenda>
+     </Legenda>
+    </Plot>
+   </Plots>
+   <PlotPanels>
+    <PlotPanel>
+     <PlotPanelId>1</PlotPanelId>
+     <PlotPanelVisible>true</PlotPanelVisible>
+     <Name>Window 1</Name>
+     <Tiling>0</Tiling>
+     <PlotIds>
+       <PlotId>1</PlotId>
+     </PlotIds>
+     <ToggleState>Base</ToggleState>
+    </PlotPanel>
+   </PlotPanels>
+  </PlotSpecs>
+  <RunSpecs>
+   <SimulatorSettings>
+    <StartTime>0</StartTime>
+    <FinishTime>10</FinishTime>
+    <Warp>false</Warp>
+    <UseOutputAfterEach>false</UseOutputAfterEach>
+    <OutputAfterEach>0.1</OutputAfterEach>
+    <EventEpsilon>1e-006</EventEpsilon>
+    <AlgebraicTolerance>1e-007</AlgebraicTolerance>
+    <SteadyStateAnalysis>false</SteadyStateAnalysis>
+    <UpdateHoldInstructions>true</UpdateHoldInstructions>
+   </SimulatorSettings>
+   <IntegrationMethods>
+    <IntegrationMethod>
+     <Name>Euler</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BackwardEuler</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <StepSize>0.01</StepSize>
+     <Alpha>1</Alpha>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>AdamsBashforth</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta2</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta4</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta8</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <SafetyFactor>0.9</SafetyFactor>
+     <Factor1>0.33</Factor1>
+     <Factor2>6</Factor2>
+     <Beta>0</Beta>
+     <UseMaxNrSteps>false</UseMaxNrSteps>
+     <MaxNrSteps>100000</MaxNrSteps>
+     <UseStiffDetection>false</UseStiffDetection>
+     <MaxNrStiffnessSteps>1000</MaxNrStiffnessSteps>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKuttaFehlberg</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>VodeAdams</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <VodeUseBDF>true</VodeUseBDF>
+     <VodeUseNewton>true</VodeUseNewton>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BDFMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>MeBDFiMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0.001</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>1</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <SelectedIntegrationMethod>8</SelectedIntegrationMethod>
+   </IntegrationMethods>
+  </RunSpecs>
+  <MultipleRun>
+   <NrSteps>10</NrSteps>
+   <CopyFromStates>false</CopyFromStates>
+   <JoinParameterVariation>true</JoinParameterVariation>
+   <ClearAfterRun>true</ClearAfterRun>
+   <RedrawAfterRun>false</RedrawAfterRun>
+   <DrawDuringSimulation>true</DrawDuringSimulation>
+   <ActionBeforeOptimization>0</ActionBeforeOptimization>
+   <CompareValue>0</CompareValue>
+   <UseCompareValue>true</UseCompareValue>
+   <MultipleRunType>MultipleRun</MultipleRunType>
+   <Minimize>true</Minimize>
+   <OptimizationVariable></OptimizationVariable>
+   <ResulVarUsage>UseEndValue</ResulVarUsage>
+   <Tolerance>0.001</Tolerance>
+   <OptimizationMethod>BroydonFletcherGoldfarbShanno</OptimizationMethod>
+   <MultipleRunVariables>
+   </MultipleRunVariables>
+  </MultipleRun>
+  <ExportData>
+   <WriteAsText>true</WriteAsText>
+   <ReadAsText>true</ReadAsText>
+   <WriteHeader>true</WriteHeader>
+   <ReadHeader>true</ReadHeader>
+   <ReadFilename></ReadFilename>
+   <WriteFilename></WriteFilename>
+   <DoWrite>false</DoWrite>
+   <ExportVariables>
+     <ExportVariable>
+       <VariableName>time</VariableName>
+     </ExportVariable>
+   </ExportVariables>
+   <ImportVariables>
+   </ImportVariables>
+  </ExportData>
+  <BreakPoints>
+  </BreakPoints>
+</ExpData>
+  </Experiment>
+</Experiments>
+</Document>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="4.5" build="4.5.4.6171">
+    <Sidops>
+<![CDATA[SFOC 520 824 description '<Information>
+ <Description>
+    <Version>4.5</Version>
+  <LibraryPath>PerformanceIndexCalc\SFOC.emx</LibraryPath>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <TimeStamp>2015-11-14 21:29:40</TimeStamp>
+<AllowLibraryUpdate>False</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>'; type 'Submodel-Equation'  ports   signal in phi;   signal in powCyl;   signal in dmf; end; implementation eq/* Equation SubmodelEnter you equations here. You can use the Toolbar buttons at the left ( Add , f(x) etc. ).*/parameters	integer global nStroke;variables	integer reset;		real phiTwoPi;	real mf, mfTemp, mfCyc, W, WCyc, WTemp;	real ISFC;initialequations	mfTemp = 0;	WTemp = 0;	reset = 1;		ISFC = 0;equations	phiTwoPi = phi mod (nStroke*pi);	mf = int(dmf);	W = int(powCyl);		if phiTwoPi > (nStroke-0.5)*pi and reset == 0 then		reset = 1;		mfCyc = mf - mfTemp;		WCyc = W - WTemp;		ISFC = mfCyc / WCyc * 3.6e9;		mfTemp = mf;		WTemp = W;	end;			if phiTwoPi > pi/10 and phiTwoPi < pi/8 and reset == 1 then		reset = 0;	end;implementation_end;]]>
+  </Sidops>
+</Model>
+</Document>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+  <Model version="4.5" build="4.5.4.6171">
+    <Sidops>
+<![CDATA[pMaxFinder 856 744 description '<Information>
+ <Description>
+    <Version>4.5</Version>
+  <LibraryPath>PerformanceIndexCalc\pMaxFinder.emx</LibraryPath>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <TimeStamp>2015-11-14 21:37:42</TimeStamp>
+<AllowLibraryUpdate>False</AllowLibraryUpdate>
+  <Configuration>
+   <struct>
+    <member>
+     <name>DocumentationMask</name>
+     <value>
+      <struct></struct>
+     </value>
+    </member>
+   </struct>
+  </Configuration>
+ </Description>
+</Information>'; type 'Submodel-Equation'  ports   signal in phi;   signal out pMax;   signal in pCyl;   signal out phiAtPMax; end; implementation eqparameters	integer global nStroke;variables	real phi360, phiComb;	real lastTime;	integer newCycle;	real pMaxTemp, phiAtPMaxTemp;initialequations	lastTime = 0;	newCycle = 1;	pMaxTemp = 0;	phiAtPMaxTemp = 0;equations	phi360 = phi*180/pi mod (180*nStroke);	if (phi360 > 180) then		phiComb = phi360 - 360;	else 		phiComb = phi360;	end;	if (time > lastTime) then		if ((phiComb>-10) and (phiComb<40) and (pCyl > 5.0e5)) then			if (newCycle==1) then				pMax = pMaxTemp;				phiAtPMax = phiAtPMaxTemp;				pMaxTemp = 0.0;				newCycle = 0;			end;			if (pCyl > pMaxTemp) then				pMaxTemp = pCyl;				phiAtPMaxTemp = phiComb;			end;		else 			newCycle = 1;		end;		lastTime = time;	end;implementation_end;]]>
+    </Sidops>
+  </Model>
+</Document>

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+ <Model version="4.6" build="4.6.0.6684">
+  <Sidops><![CDATA[model 128 184
+ description '<Information>
+ <Description>
+    <Version>4.6</Version>
+<IsMainModel>0</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>EngineModel\Test.emx</LibraryPath>
+  <TimeStamp>2016-4-25 16:55:54</TimeStamp>
+</Description>
+</Information>';
+ type Mainmodel
+ end;
+ implementation bg
+  submodels
+   Demux 240 189.5
+			specifications active 'outputs_9'
+				specification 'default'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-10-5 22:44:58</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 96 color 0 width 2;
+   rectangle 124 64 132 96 color -1;
+   text '2' 133 91 color 8421504 8;
+  terminals
+   output1 128 72 fixed;
+   input 128 80 fixed;
+   output2 128 88 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+				specification 'outputs_1'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output;
+   signal in input;
+ end;
+ icon bg bottom
+  figures
+   line 128 64 128 80 width 2;
+   rectangle 124 64 132 80 color -1;
+   text '1' 133 82 color 8421504 8;
+  terminals
+   input 128 72 fixed;
+   output 128 72 fixed;
+ end;
+ implementation eq
+equations
+	output = input;implementation_end;
+specification_end;
+				specification 'outputs_2'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal in input [2,1];
+   signal out output2;
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '2' 133 83 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   input 128 72 fixed;
+   output2 128 80 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2] = input;implementation_end;
+specification_end;
+				specification 'outputs_3'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal in input [3,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 56 128 88 width 2;
+   rectangle 124 56 132 88 color -1;
+   text '3' 133 82 color 8421504 8;
+  terminals
+   output1 128 64 fixed;
+   output2 128 72 fixed;
+   output3 128 80 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3] = input;implementation_end;
+specification_end;
+				specification 'outputs_4'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal in input [4,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '4' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 80 fixed;
+   output4 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4] = input;implementation_end;
+specification_end;
+				specification 'outputs_5'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal in input [5,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 48 128 96 width 2;
+   rectangle 124 48 132 96 color -1;
+   text '5' 133 83 color 8421504 8;
+  terminals
+   output1 128 56 fixed;
+   output2 128 64 fixed;
+   output3 128 72 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5] = input;implementation_end;
+specification_end;
+				specification 'outputs_6'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal in input [6,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '6' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 80 fixed;
+   output5 128 88 fixed;
+   output6 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6] = input;implementation_end;
+specification_end;
+				specification 'outputs_7'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal in input [7,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 40 128 104 width 2;
+   rectangle 124 40 132 104 color -1;
+   text '7' 133 83 color 8421504 8;
+  terminals
+   output1 128 48 fixed;
+   output2 128 56 fixed;
+   output3 128 64 fixed;
+   output4 128 72 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7] = input;implementation_end;
+specification_end;
+				specification 'outputs_8'
+description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal in input [8,1];
+ end;
+ icon bg bottom
+  figures
+   line 128 32 128 112 width 2;
+   rectangle 124 32 132 112 color -1;
+   text '8' 133 83 color 8421504 8;
+  terminals
+   output1 128 40 fixed;
+   output2 128 48 fixed;
+   output3 128 56 fixed;
+   output4 128 64 fixed;
+   output5 128 80 fixed;
+   output6 128 88 fixed;
+   output7 128 96 fixed;
+   output8 128 104 fixed;
+   input 128 72 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8] = input;implementation_end;
+specification_end;
+				specification 'outputs_9'
+ description '<Description>
+   <Version>4.1</Version>
+  <LibraryPath>Signal\Block Diagram\Demux.emx</LibraryPath>
+  <TimeStamp>2011-3-4 15:12:50</TimeStamp>
+<IsMainModel>1</IsMainModel>
+ <KeepParameterValues>False</KeepParameterValues>
+ <AllowLibraryUpdate>True</AllowLibraryUpdate>
+</Description>';
+ type Demux
+  ports
+   signal out output1;
+   signal out output2;
+   signal out output3;
+   signal out output4;
+   signal out output5;
+   signal out output6;
+   signal out output7;
+   signal out output8;
+   signal out output9;
+   signal in input [9,1];
+ end;
+ icon bg bottom
+  figures
+   line 200 192 280 192 color 0 width 2;
+   text '9' 251 188 color 8421504 8;
+  terminals
+   output1 208 192 fixed;
+   output2 216 192 fixed;
+   output3 224 192 fixed;
+   output4 232 192 fixed;
+   output5 240 192 fixed;
+   output6 248 192 fixed;
+   output7 256 192 fixed;
+   output8 264 192 fixed;
+   output9 272 192 fixed;
+   input 240 192 fixed;
+ end;
+ implementation eq
+equations
+	[output1; output2; output3; output4; output5; output6; output7; output8; output9] = input;implementation_end;
+specification_end;
+			end;
+   EffortSensor1 240 248.5
+    description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\EffortSensor.emx</LibraryPath>
+  <TimeStamp>2011-11-29 15:44:34</TimeStamp>
+</Description>
+</Information>';
+    knot EffortSensor
+     ports
+      power knot in p1 [9,1];
+      power knot out p2 [9,1];
+      signal knot out effort [9,1];
+     restrictions
+      causality constraint not_equal p1 p2;
+    end;
+    icon bg ellipse
+     figures
+      ellipse 233.1 241.4 246.9 255.5 color 0 fill 16777215;
+      text 'e' 240 247.4 color 0;
+    end;
+    implementation eq
+equations
+	p2.e = p1.e;
+	p1.f = p2.f;
+	effort = p1.e;
+implementation_end;
+   Se 200 248
+    description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\Se.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:36:49</TimeStamp>
+</Description>
+</Information>';
+    type Se
+     ports
+      power out p [9,1];
+     restrictions
+      causality fixed out p;
+    end;
+    icon bg bottom
+     figures
+      text 'Se' 200 248 color 0 18 bold;
+    end;
+    implementation eq
+parameters
+	real effort[9] = [1;1;1;1;1;1;1;1;1];
+variables
+	real flow[9];
+equations
+	p.e = effort;
+	flow = p.f;
+implementation_end;
+   ZeroJunction 296 248
+    description '<Information>
+ <Description>
+    <Version>4.2</Version>
+<IsMainModel>1</IsMainModel>
+  <KeepParameterValues>False</KeepParameterValues>
+    <LibraryPath>Bond Graph\ZeroJunction.emx</LibraryPath>
+  <TimeStamp>2011-11-29 16:45:16</TimeStamp>
+</Description>
+</Information>';
+    knot ZeroJunction
+     ports
+      power knot duplicatable none p [9,1];
+      signal knot out effort [9,1];
+     restrictions
+      causality constraint one_in p;
+    end;
+    icon bg
+     figures
+      text '0' 296 248 color 0 18 bold;
+    end;
+    implementation eq
+equations
+	sum (direct (p.f)) = 0;
+	equal (collect (p.e));
+	effort = first (p.e);
+implementation_end;
+  end;
+  connections
+   EffortSensor1\effort -> Demux\input;
+   EffortSensor1\p2 => ZeroJunction\p;
+   Se\p => EffortSensor1\p1;
+  end;
+ implementation_end;
+]]>
+</Sidops>
+ </Model>
+ <Experiments>
+     <DefaultExperiment><![CDATA[Experiment 1]]>
+</DefaultExperiment>
+  <Experiment>
+    <Name>Experiment 1</Name>
+    <CreatedBy></CreatedBy>
+    <Info></Info>
+<ExpData>
+  <VersionNumber>4.6</VersionNumber>
+  <ModelProperties>
+  </ModelProperties>
+  <Variables>
+   <Parameters>
+   </Parameters>
+  </Variables>
+  <PlotSpecs>
+   <VarNames>
+    <VarName>time</VarName>
+   </VarNames>
+   <Plots>
+    <Plot>
+     <PlotType>GraphPlot</PlotType>
+     <BasePlot>
+       <PlotId>1</PlotId>
+       <UseWindowsBGColor>true</UseWindowsBGColor>
+       <BGColor>15790320</BGColor>
+       <PlotIsVisible>true</PlotIsVisible>
+     </BasePlot>
+     <Grid>
+      <DrawGrid>true</DrawGrid>
+      <GridColor>15780518</GridColor>
+      <XTicks>10</XTicks>
+      <YTicks>10</YTicks>
+      <ZTicks>10</ZTicks>
+      <Use3DLook>false</Use3DLook>
+     </Grid>
+     <PlotBGColor>16777215</PlotBGColor>
+     <ShowPlotTitle>true</ShowPlotTitle>
+     <TitlePosition>1</TitlePosition>
+     <PlotTitle>model</PlotTitle>
+     <ShowXValues>true</ShowXValues>
+     <Fonts>
+      <TitleFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </TitleFont>
+      <LabelFont>
+       <Name>Arial</Name>
+       <Height>12</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </LabelFont>
+      <ValuesFont>
+       <Name>Arial</Name>
+       <Height>10</Height>
+       <PitchFamily>34</PitchFamily>
+       <Weight>400</Weight>
+       <Italic>0</Italic>
+       <UnderLine>0</UnderLine>
+       <StrikeOut>0</StrikeOut>
+       <Color>0</Color>
+      </ValuesFont>
+     </Fonts>
+     <SharedXAxis>true</SharedXAxis>
+     <SharedYAxis>true</SharedYAxis>
+     <SharedZAxis>false</SharedZAxis>
+     <XAxes>
+      <Axis>
+       <Minimum>0</Minimum>
+       <Maximum>10</Maximum>
+       <Linear>true</Linear>
+       <Scaling>3</Scaling>
+       <Label>time</Label>
+      </Axis>
+     </XAxes>
+     <YAxes>
+      <Axis>
+       <Minimum>-50</Minimum>
+       <Maximum>50</Maximum>
+       <Linear>true</Linear>
+       <Scaling>1</Scaling>
+       <Label></Label>
+      </Axis>
+     </YAxes>
+     <ZAxes>
+     </ZAxes>
+     <Curves>
+      <Curve>
+       <LineColor>16711680</LineColor>
+       <LineStyle>1</LineStyle>
+       <TickColor>16711680</TickColor>
+       <TickStyle>0</TickStyle>
+       <CurveVisible>true</CurveVisible>
+       <PixelThresshold>1</PixelThresshold>
+       <LineThickness>1</LineThickness>
+       <LineOrder>1</LineOrder>
+       <ShowYValues>true</ShowYValues>
+       <XCurveData>
+        <ShowUnit>true</ShowUnit>
+        <VarName>time</VarName>
+       </XCurveData>
+      </Curve>
+     </Curves>
+     <Legenda>
+      <ShowLegenda>true</ShowLegenda>
+     </Legenda>
+    </Plot>
+   </Plots>
+   <PlotPanels>
+    <PlotPanel>
+     <PlotPanelId>1</PlotPanelId>
+     <PlotPanelVisible>true</PlotPanelVisible>
+     <Name>Window 1</Name>
+     <Tiling>0</Tiling>
+     <PlotIds>
+       <PlotId>1</PlotId>
+     </PlotIds>
+     <ToggleState>Base</ToggleState>
+    </PlotPanel>
+   </PlotPanels>
+   <WindowRectangles virtualDesktopWidth="3072" virtualDesktopHeight="960">
+     <WindowRectangle monitor="0" left="0" top="0" right="1536" bottom="960" plotpanelid="1">
+0 0 0.629557 0.588542
+     </WindowRectangle>
+   </WindowRectangles>
+  </PlotSpecs>
+  <RunSpecs>
+   <SimulatorSettings>
+    <StartTime>0</StartTime>
+    <FinishTime>70</FinishTime>
+    <Warp>false</Warp>
+    <UseOutputAfterEach>true</UseOutputAfterEach>
+    <OutputAfterEach>0.0001</OutputAfterEach>
+    <EventEpsilon>1e-006</EventEpsilon>
+    <AlgebraicTolerance>1e-007</AlgebraicTolerance>
+    <SteadyStateAnalysis>false</SteadyStateAnalysis>
+    <UpdateHoldInstructions>true</UpdateHoldInstructions>
+   </SimulatorSettings>
+   <IntegrationMethods>
+    <IntegrationMethod>
+     <Name>Euler</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BackwardEuler</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <StepSize>0.01</StepSize>
+     <Alpha>1</Alpha>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>AdamsBashforth</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta2</Name>
+     <StepSize>0.01</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta4</Name>
+     <StepSize>0.0001</StepSize>
+     <AutoStepSize>false</AutoStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKutta8</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>0</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <SafetyFactor>0.9</SafetyFactor>
+     <Factor1>0.33</Factor1>
+     <Factor2>6</Factor2>
+     <Beta>0</Beta>
+     <UseMaxNrSteps>false</UseMaxNrSteps>
+     <MaxNrSteps>100000</MaxNrSteps>
+     <UseStiffDetection>false</UseStiffDetection>
+     <MaxNrStiffnessSteps>1000</MaxNrStiffnessSteps>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>RungeKuttaFehlberg</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>0</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>VodeAdams</Name>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>0</MaximumStepSize>
+     <AbsoluteTolerance>1e-006</AbsoluteTolerance>
+     <RelativeTolerance>1e-006</RelativeTolerance>
+     <VodeUseBDF>true</VodeUseBDF>
+     <VodeUseNewton>true</VodeUseNewton>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>BDFMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>0</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <IntegrationMethod>
+     <Name>MeBDFiMethod</Name>
+     <AbsoluteTolerance>1e-005</AbsoluteTolerance>
+     <RelativeTolerance>1e-005</RelativeTolerance>
+     <AlgebraicAbsoluteTolerance>1e-005</AlgebraicAbsoluteTolerance>
+     <AlgebraicRelativeTolerance>1e-005</AlgebraicRelativeTolerance>
+     <UseInitialStepSize>false</UseInitialStepSize>
+     <InitialStepSize>0</InitialStepSize>
+     <UseMaximumStepSize>false</UseMaximumStepSize>
+     <MaximumStepSize>0</MaximumStepSize>
+     <UseFixedStepSize>false</UseFixedStepSize>
+     <FixedStepSize>0</FixedStepSize>
+    </IntegrationMethod>
+    <SelectedIntegrationMethod>4</SelectedIntegrationMethod>
+   </IntegrationMethods>
+  </RunSpecs>
+  <MultipleRun>
+   <NrSteps>10</NrSteps>
+   <CopyFromStates>false</CopyFromStates>
+   <JoinParameterVariation>true</JoinParameterVariation>
+   <ClearAfterRun>true</ClearAfterRun>
+   <RedrawAfterRun>false</RedrawAfterRun>
+   <DrawDuringSimulation>true</DrawDuringSimulation>
+   <ActionBeforeOptimization>0</ActionBeforeOptimization>
+   <CompareValue>0</CompareValue>
+   <UseCompareValue>true</UseCompareValue>
+   <MultipleRunType>MultipleRun</MultipleRunType>
+   <Minimize>true</Minimize>
+   <OptimizationVariable></OptimizationVariable>
+   <ResulVarUsage>UseEndValue</ResulVarUsage>
+   <Tolerance>0.001</Tolerance>
+   <OptimizationMethod>BroydonFletcherGoldfarbShanno</OptimizationMethod>
+   <MultipleRunVariables>
+   </MultipleRunVariables>
+  </MultipleRun>
+  <ExportData>
+   <WriteAsText>true</WriteAsText>
+   <ReadAsText>true</ReadAsText>
+   <WriteHeader>true</WriteHeader>
+   <ReadHeader>true</ReadHeader>
+   <ReadFilename></ReadFilename>
+   <WriteFilename></WriteFilename>
+   <DoWrite>false</DoWrite>
+   <ExportVariables>
+     <ExportVariable>
+       <VariableName>time</VariableName>
+     </ExportVariable>
+   </ExportVariables>
+   <ImportVariables>
+   </ImportVariables>
+  </ExportData>
+  <BreakPoints>
+  </BreakPoints>
+</ExpData>
+  </Experiment>
+</Experiments>
+</Document>
