@@ -20,8 +20,8 @@ pRailRef = (600:100:1500)*1e5;
 noCycAvg = 10;
 CAtoRec = -10:1:100;
 
-BSFCCase = zeros(length(RPMRef),length(BMEPRef),length(pRailRef));
-dQCase = zeros(length(RPMRef),length(CAtoRec),length(BMEPRef),length(pRailRef));
+%BSFCCase = zeros(length(RPMRef),length(BMEPRef),length(pRailRef));
+%dQCase = zeros(length(RPMRef),length(CAtoRec),length(BMEPRef),length(pRailRef));
 %pMaxCase = EVC;
 
 %pExhCase = EVC;
@@ -45,7 +45,7 @@ logVariables = {'time' ,...
     'Controller.MultiplyDivide.output',...
     'Controller.Governor.Governor.omegaELP'};
 xxsimSetLogVariables(logVariables);
-%load('SSMapResult.mat');
+load('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHR.mat');
 
 for ii = 1:length(pRailRef)   
     for jj = 1:length(BMEPRef)
@@ -60,7 +60,7 @@ for ii = 1:length(pRailRef)
                 xxsimRun();
                 [values, names] = xxsimGetLogValues(logVariables);
                 toc
-                if abs(values(end,5)*30/pi - RPMRef(kk)) / RPMRef(kk) < 0.05
+                if abs(values(end,5)*30/pi - RPMRef(kk)) / RPMRef(kk) < 0.05 & values(end,1) > 49.9 
                     BSFCCase(kk,jj,ii) = mean(values(end-20000:end,4));
                     phiComb = mod(values(end-20000:end,3)*180/pi,720);
                     dQSim = values(end-20000:end,2);
@@ -69,17 +69,20 @@ for ii = 1:length(pRailRef)
                     idxStartCyc = idxEndCyc + 1;
                     idxEndCyc = idxEndCyc(2:end);
                     idxStartCyc = idxStartCyc(1:end-1);
+                    mm = 0;
                     for i = (length(idxStartCyc)-(noCycAvg-1)):length(idxStartCyc)
+                        mm = mm + 1;
                         idxTemp = idxStartCyc(i):idxEndCyc(i);
-                        dQTemp(i,:) = interp1(phiComb(idxTemp),dQSim(idxTemp),CAtoRec);
+                        dQTemp(mm,:) = interp1(phiComb(idxTemp),dQSim(idxTemp),CAtoRec);
                     end;
                     plot(CAtoRec,dQTemp);
                     dQCase(kk,:,jj,ii) = mean(dQTemp);
                 else
                     BSFCCase(kk,jj,ii) = 1;
                 end;
-                save('ssMapScaniaROHR.mat','BSFCCase','dQCase','CAtoRec','pRailRef', ...
+                save('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHR.mat','BSFCCase','dQCase','CAtoRec','pRailRef', ...
                     'BMEPRef','RPMRef');
+                xxsimClearLastRun();
             end;
         end;
     end;
