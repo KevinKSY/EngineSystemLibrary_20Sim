@@ -45,9 +45,9 @@ logVariables = {'time' ,...
     'Controller.MultiplyDivide.output',...
     'Controller.Governor.Governor.omegaELP'};
 xxsimSetLogVariables(logVariables);
-load('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHR.mat');
+load('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHRInjM10_2.mat');
 
-for ii = 1:length(pRailRef)   
+for ii = 6:length(pRailRef)   
     for jj = 1:length(BMEPRef)
         for kk = 1:length(RPMRef);
             if BSFCCase(kk,jj,ii) == 0
@@ -80,7 +80,7 @@ for ii = 1:length(pRailRef)
                 else
                     BSFCCase(kk,jj,ii) = 1;
                 end;
-                save('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHR.mat','BSFCCase','dQCase','CAtoRec','pRailRef', ...
+                save('C:\Users\yum\Dropbox\Study\NTNU2016S\ssMapScaniaROHRInjM10_2.mat','BSFCCase','dQCase','CAtoRec','pRailRef', ...
                     'BMEPRef','RPMRef');
                 xxsimClearLastRun();
             end;
